@@ -20,12 +20,7 @@
     </header>
     
     <main>
-      <div class="fixed-action-btn">
-        <a class="btn-floating btn-large" id="accent-bg">
-          <i class="large material-icons">add</i>
-        </a>
-      </div>
-      
+      <a class="btn-floating btn-large waves-effect waves-light" id="accent-bg" style="position:fixed;bottom:10px;left:10px;"><i class="material-icons">add</i></a>
       <br>
       <br>
       <br>
@@ -123,10 +118,6 @@
 
       update_theme();
       load_users();
-
-      $(document).ready(function(){
-        $('.fixed-action-btn').floatingActionButton({direction:"bottom","left",hoverEnabled:false});
-      });
     </script>
   </body>
 </html>
