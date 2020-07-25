@@ -20,9 +20,13 @@
     </header>
     
     <main>
+      <br>
+      <br>
+      <br>
+      <br>
       <center>
         <div class="container">
-          <div class="row center">
+          <div class="row">
             <div class="col" id="user-list"></div>
           </div>
         </div>
@@ -109,7 +113,7 @@
     if (localStorage.length > 0) {
       // Soon TM
     } else {
-      generate_card(document.getElementById("user-list"),"New User","https://i.imgur.com/S3qRwCz.png","Create a new user","CREATE","javascript:create_user();",null,null);
+      generate_card(document.getElementById("user-list"),"New User","https://imgur.com/XB5aKlS","Create a new user","CREATE","javascript:create_user();",null,null);
     }
   }
   
@@ -122,14 +126,5 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
-  }
-  
-  .center {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
   }
 </style>
