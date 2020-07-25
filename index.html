@@ -31,10 +31,12 @@
   var accent_bg = "#d2d256";
   
   function update_theme(){
-    document.querySelectorAll("#accent-bg").forEach = function(abg){
+    document.querySelectorAll("#accent-bg").forEach(function(abg){
       abg.style.backgroundColor = accent_bg;
-    }
+    });
   }
+  
+  update_theme();
 </script>
 <style>
   body {
