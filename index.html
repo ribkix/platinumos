@@ -20,9 +20,7 @@
     </header>
     
     <main>
-      <br>
-      <br>
-      <center>
+      <center class="vertical-center">
         <div class="container">
           <div class="row">
             <div class="col" id="user-list"></div>
@@ -52,13 +50,11 @@
     // Soon TM
   }
   
-  function generate_card(title,picture,description,button,button_href){
-    var l = document.getElementById("user-list");
-                  
+  function generate_card(parent,title,picture,description,button,button_href,button2,button2_href){
     var card = document.createElement("DIV");
     card.classList.add("card");
     card.style = "width:175px;";
-    l.appendChild(card);
+    parent.appendChild(card);
 
     var card_image = document.createElement("DIV");
     card_image.classList.add("card-image");
@@ -95,6 +91,17 @@
     a.innerHTML = button;
     card_action.appendChild(a);
     
+    if (button2 && button2_href != null){
+      var a2 = document.createElement("A");
+      a2.id = "accent-bg"
+      a2.classList.add("waves-effect");
+      a2.classList.add("waves-light");
+      a2.classList.add("btn");
+      a2.href = button2_href;
+      a2.innerHTML = button2;
+      card_action.appendChild(a2);
+    }
+    
     update_theme();
   }
   
@@ -102,7 +109,7 @@
     if (localStorage.length > 0) {
       // Soon TM
     } else {
-      generate_card("New User","https://i.imgur.com/S3qRwCz.png","Create a new user","CREATE","javascript:create_user();");
+      generate_card(document.getElementById("user-list"),"New User","https://i.imgur.com/S3qRwCz.png","Create a new user","CREATE","javascript:create_user();",null,null);
     }
   }
   
@@ -115,5 +122,13 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
+  }
+  
+  .vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
   }
 </style>
