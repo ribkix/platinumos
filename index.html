@@ -21,8 +21,8 @@
     
     <main>
       <a class="btn-floating btn-large waves-effect waves-light accent-bg" id="new-user-fab" style="position:fixed;bottom:10px;left:10px;"><i class="material-icons">add</i></a>
-      <div class="tap-target" id="tap-target-new-user-fab" data-target="new-user-fab">
-        <div class="tap-target-content accent-bg">
+      <div class="tap-target accent-bg" id="tap-target-new-user-fab" data-target="new-user-fab">
+        <div class="tap-target-content">
           <h5>Create a new user</h5>
           <p>Create a new user by pressing this button.</p>
         </div>
@@ -58,6 +58,7 @@
       function create_user(){
         var instance = M.TapTarget.getInstance(document.getElementById("tap-target-new-user-fab"));
         instance.open();
+        document.getElementById("new-user-fab").classList.add("accent-bg");
       }
 
       function generate_card(parent,title,picture,description,button,button_href,button2,button2_href){
