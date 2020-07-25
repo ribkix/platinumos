@@ -51,7 +51,8 @@
 
       function update_theme(){
         document.querySelectorAll(".accent-bg").forEach(function(abg){
-          abg.style.setAttribute("cssText","background-color: " + accent_bg + " !important");
+          if (abg)
+            abg.style.setAttribute("cssText","background-color: " + accent_bg + " !important");
         });
       }
 
