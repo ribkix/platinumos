@@ -51,14 +51,14 @@
 
       function update_theme(){
         document.querySelectorAll(".accent-bg").forEach(function(abg){
-          abg.style.backgroundColor = accent_bg;
+          abg.style.setAttribute("cssText","background-color: " + accent_bg + " !important");
         });
       }
 
       function create_user(){
         var instance = M.TapTarget.getInstance(document.getElementById("tap-target-new-user-fab"));
         instance.open();
-        document.getElementById("new-user-fab").classList.add("accent-bg");
+        // document.getElementById("new-user-fab").classList.add("accent-bg");
       }
 
       function generate_card(parent,title,picture,description,button,button_href,button2,button2_href){
