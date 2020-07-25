@@ -20,7 +20,17 @@
     </header>
     
     <main>
-      <a class="btn-floating btn-large waves-effect waves-light accent-bg" id="new-user-fab" style="position:fixed;bottom:10px;left:10px;"><i class="material-icons">add</i></a>
+      <div id="modal-new-user-fab" class="modal bottom-sheet">
+        <div class="modal-content">
+          <h4>Create new user</h4>
+          <p>Create a new user.</p>
+        </div>
+        <div class="modal-footer">
+          <a class="btn modal-trigger accent-bg">Create</a>
+        </div>
+      </div>
+      
+      <a class="btn-floating btn-large waves-effect waves-light accent-bg" id="new-user-fab" style="position:fixed;bottom:10px;left:10px;" href="javascript:create_new_user();"><i class="material-icons">add</i></a>
       <div class="tap-target accent-bg" id="tap-target-new-user-fab" data-target="new-user-fab">
         <div class="tap-target-content">
           <h5>Create a new user</h5>
@@ -58,7 +68,11 @@
       function create_user(){
         var instance = M.TapTarget.getInstance(document.getElementById("tap-target-new-user-fab"));
         instance.open();
-        // document.getElementById("new-user-fab").classList.add("accent-bg");
+      }
+      
+      function create_new_user(){
+        var instance = M.Modal.getInstance(document.getElementById("modal-new-user-fab"));
+        instance.open();
       }
 
       function generate_card(parent,title,picture,description,button,button_href,button2,button2_href){
@@ -129,6 +143,10 @@
       
       $(document).ready(function(){
         $('#tap-target-new-user-fab').tapTarget();
+      });
+      
+      $(document).ready(function(){
+        $('.modal-new-user-fab').modal();
       });
     </script>
   </body>
