@@ -39,7 +39,7 @@
                   </div>
                   <div class="input-field">
                     <input id="picture" type="text" class="validate" value="https://i.imgur.com/XB5aKlS.png">
-                    <label for="picture">Profile Picture (Image uRL)</label>
+                    <label for="picture">Profile Picture (Image URL)</label>
                   </div>
                 </div>
                 <div class="col">
@@ -76,6 +76,15 @@
         <div class="container">
           <div class="row">
             <div class="col" id="user-list"></div>
+          </div>
+        </div>
+      </center>
+      
+      <center>
+        <div class="loading-screen">
+          <h1>Loading...</h1>
+          <div class="progress">
+            <div class="indeterminate"></div>
           </div>
         </div>
       </center>
@@ -235,5 +244,16 @@
 
   .input-field.suffix label {
     margin-right: 3rem;
+  }
+  
+  .loading-screen {
+    opacity: 0.6;
+    width: 100%;
+    height: 100%;
+    background-color: #d2d256;
+  }
+  
+  .loading-screen h1 {
+    color: white;
   }
 </style>
