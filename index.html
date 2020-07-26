@@ -94,7 +94,7 @@
         if (eye.innerHTML = "visibility"){
           input.type = "text";
           eye.innerHTML = "visibility_off";
-        } else if (eye.innerHTML = "visibility_off"){
+        } else {
           input.type = "password";
           eye.innerHTML = "visibility";
         }
@@ -191,6 +191,12 @@
     transition: color .2s;
     top: 0px;
     right: 0px;
+    color: black;
+  }
+  
+  .input-field.suffix a:hover {
+    color: black;
+    text-decoration: none;
   }
 
   .input-field.suffix input,
