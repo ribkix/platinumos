@@ -28,10 +28,10 @@
             <input id="username" type="text" class="validate" value="user">
             <label for="username">Username (Cannot change later on!)</label>
           </div>
-          <div class="input-field suffix">
+          <div class="input-field suffix a-bypass" style="width:70%;">
             <input id="password" type="password" class="validate">
             <label for="password">Password</label>
-            <i class="material-icons" id="password-eye">remove_red_eye</i>
+            <a class="material-icons" id="password-eye" href="javascript:create_user_password_visibility();">visibility</a>
           </div>
           <div class="input-field" style="width:70%;">
             <input id="picture" type="text" class="validate" value="https://i.imgur.com/XB5aKlS.png">
@@ -86,6 +86,18 @@
       function create_new_user(){
         var instance = M.Modal.getInstance(document.getElementById("modal-new-user-fab"));
         instance.open();
+      }
+      
+      function create_user_password_visibility(){
+        var eye = document.getElementById("password-eye");
+        var input = document.getElementById("password");
+        if (eye.innerHTML = "visibility"){
+          input.type = "text";
+          eye.innerHTML = "visibility_off";
+        } else if (eye.innerHTML = "visibility_off"){
+          input.type = "password";
+          eye.innerHTML = "visibility";
+        }
       }
 
       function generate_card(parent,title,picture,description,button,button_href,button2,button2_href){
@@ -172,17 +184,13 @@
     background-position: center center;
   }
   
-  .input-field.suffix i {
+  .input-field.suffix a {
     position: absolute;
     width: 3rem;
     font-size: 2rem;
     transition: color .2s;
     top: 0px;
     right: 0px;
-  }
-
-  .input-field.suffix i.active {
-    color: #26a69a;
   }
 
   .input-field.suffix input,
