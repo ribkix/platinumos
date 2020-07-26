@@ -80,9 +80,8 @@
         </div>
       </center>
       
-      <center>
+      <center id="loading">
         <div class="loading-screen"></div>
-        
         <div class="loading-overlay">
           <br>
           <br>
@@ -110,6 +109,15 @@
     <script src="http://platinumos.tk/materialize.min.js"></script>
     <script>
       var accent_bg = "#d2d256";
+      
+      function toggle_loading(visible){
+        var loading = document.getElementById("loading");
+        if (visible){
+          loading.style.display = "block";
+        } else {
+          loading.style.display = "none";
+        }
+      }
 
       function update_theme(){
         document.querySelectorAll(".accent-bg").forEach(function(abg){
@@ -138,6 +146,8 @@
         document.getElementById("picture").addEventListener("change", (event) => {
           document.getElementById("picture-preview").src = event.target.value;
         });
+        
+        toggle_loading(false);
       });
       
       function create_user_password_visibility(){
@@ -280,7 +290,7 @@
   }
   
   .loading-overlay h1 {
-    color: white;
+    color: black;
   }
   
   .loading-overlay .progress {
