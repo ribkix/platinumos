@@ -21,39 +21,41 @@
     
     <main>
       <div id="modal-new-user-fab" class="modal">
-        <div class="modal-content">
-          <h4>Create new user</h4>
-          <p>Create a new user.</p>
-          <div class="container">
-            <div class="row">
-              <div class="col">
-                <div class="input-field">
-                  <input id="username" type="text" class="validate" value="user">
-                  <label for="username">Username (Cannot change later on!)</label>
-                </div>
-                <div class="input-field suffix a-bypass">
-                  <input id="password" type="password" class="validate">
-                  <label for="password">Password</label>
-                  <a class="material-icons" id="password-eye" href="javascript:create_user_password_visibility();">visibility</a>
-                </div>
-                <div class="input-field">
-                  <input id="picture" type="text" class="validate" value="https://i.imgur.com/XB5aKlS.png">
-                  <label for="picture">Profile Picture (Image uRL)</label>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card" style="width:125px;">
-                  <div class="card-image">
-                    <img src="https://i.imgur.com/XB5aKlS.png" style="width:125px;height:125px;">
+        <center>
+          <div class="modal-content">
+            <h4>Create new user</h4>
+            <p>Create a new user.</p>
+            <div class="container">
+              <div class="row">
+                <div class="col">
+                  <div class="input-field">
+                    <input id="username" type="text" class="validate" value="user">
+                    <label for="username">Username (Cannot change later on!)</label>
                   </div>
-                  <div class="card-content" style="text-align:center;">
-                    <span class="card-title">user</span>
+                  <div class="input-field suffix a-bypass">
+                    <input id="password" type="password" class="validate">
+                    <label for="password">Password</label>
+                    <a class="material-icons" id="password-eye" href="javascript:create_user_password_visibility();">visibility</a>
+                  </div>
+                  <div class="input-field">
+                    <input id="picture" type="text" class="validate" value="https://i.imgur.com/XB5aKlS.png">
+                    <label for="picture">Profile Picture (Image uRL)</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card" style="width:125px;">
+                    <div class="card-image">
+                      <img src="https://i.imgur.com/XB5aKlS.png" style="width:125px;height:125px;" id="picture-preview">
+                    </div>
+                    <div class="card-content" style="text-align:center;">
+                      <span class="card-title" id="username-preview">user</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </center>
         <div class="modal-footer">
           <a class="waves-effect waves-light btn accent-bg">Create</a>
         </div>
@@ -103,6 +105,19 @@
         var instance = M.Modal.getInstance(document.getElementById("modal-new-user-fab"));
         instance.open();
       }
+      
+      $(document).ready(function(){
+        $('#tap-target-new-user-fab').tapTarget();
+        $('#modal-new-user-fab').modal();
+        
+        document.getElementById("username").addEventListener("change", (event) => {
+          document.getElementById("username-preview").innerHTML = event.target.value;
+        });
+        
+        document.getElementById("picture").addEventListener("change", (event) => {
+          document.getElementById("picture-preview").src = event.target.value;
+        });
+      });
       
       function create_user_password_visibility(){
         var eye = document.getElementById("password-eye");
@@ -181,14 +196,6 @@
 
       update_theme();
       load_users();
-      
-      $(document).ready(function(){
-        $('#tap-target-new-user-fab').tapTarget();
-      });
-      
-      $(document).ready(function(){
-        $('#modal-new-user-fab').modal();
-      });
     </script>
   </body>
 </html>
