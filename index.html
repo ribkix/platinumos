@@ -134,6 +134,20 @@
       }
       
       function generate_user_card(parent,username,picture){
+        var d = document.getElementById("user-list").getElementsByTagName("")
+        var c = 0;
+        for (i=0;i<d.length;i++){
+          if (d[i].classList.contains("col"))
+            c++;
+          else if (d[i].tagName == "BR")
+            c = c - 5;
+        }
+        
+        if (c==5){
+          var br = document.createElement("BR");
+          parent.appendChild(br);
+        }
+        
         var col = document.createElement("DIV");
         col.classList.add("col");
         parent.appendChild(col);
