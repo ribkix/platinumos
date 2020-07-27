@@ -57,7 +57,7 @@
           </div>
         </center>
         <div class="modal-footer">
-          <a class="waves-effect waves-light btn accent-bg" href="javascript:create_user();">Create</a>
+          <a class="waves-effect waves-light btn accent-bg" href="javascript:actually_create_user_lmao();">Create</a>
         </div>
       </div>
       
@@ -130,9 +130,9 @@
         },50);
       }
       
-      function create_user(){
+      function actually_create_user_lmao(){
         if (!localStorage.getItem("user-" + document.getElementById("username"))){
-          localStorage.setItem("user-" + localStorage.getElementById("username"),JSON.Stringify([localStorage.getElementById("username"),localStorage.getElementById("password"),localStorage.getElementById("picture")]));
+          localStorage.setItem("user-" + document.getElementById("username"),JSON.Stringify([document.getElementById("username"),document.getElementById("password"),document.getElementById("picture")]));
           M.toast({html:document.getElementById("username") + " created!"});
         } else
           M.toast({html:document.getElementById("username") + " already exists!"});
