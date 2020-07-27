@@ -133,9 +133,15 @@
       function actually_create_user_lmao(){
         if (!localStorage.getItem("user-" + document.getElementById("username").value)){
           localStorage.setItem("user-" + document.getElementById("username").value,JSON.stringify([document.getElementById("username").value,document.getElementById("password").value,document.getElementById("picture").value]));
+          localStorage.setItem("settings-" + document.getElementById("username").value,JSON.stringify([]));
+          var instance = M.Modal.getInstance(document.getElementById("modal-new-user-fab"));
+          instance.close();
           M.toast({html:document.getElementById("username").value + " created!"});
-        } else
+        } else {
+          var instance = M.Modal.getInstance(document.getElementById("modal-new-user-fab"));
+          instance.close();
           M.toast({html:document.getElementById("username").value + " already exists!"});
+        }
       }
       
       $(document).ready(function(){
