@@ -251,7 +251,7 @@
       }
       
       function os_update_theme(settings){
-        document.body.style = 'background-image: url("' + settings[0] + '"); background-repeat: no-repeat; background-size: cover; background-position: center center;';
+        document.body.style.backgroundImage = "url(" + settings[0] + ");";
         document.querySelectorAll(".accent-bg-os").forEach(function(abg){
           abg.style.setProperty("background-color",settings[1],"important");
         });
@@ -270,6 +270,8 @@
           
           document.getElementById("os-header").style.display = "block";
           document.getElementById("os-logo").innerHTML = username;
+          
+          toggle_modal_loading(false);
         }
       }
       
