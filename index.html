@@ -233,6 +233,7 @@
         a.classList.add("waves-effect");
         a.classList.add("waves-light");
         a.classList.add("red");
+        a.style.zIndex = "5";
         card_image.appendChild(a);
         
         var i = document.createElement("I");
@@ -265,6 +266,7 @@
         var ul = document.createElement("UL");
         ul.classList.add("collapsible");
         ul.id = "collapsible-user-" + username;
+        ul.style = "position:absolute;width:225px;right:-1px;bottom:-14px;";
         card_action.appendChild(ul);
         
         var li = document.createElement("LI");
@@ -277,6 +279,8 @@
         
         var div2 = document.createElement("DIV");
         div2.classList.add("collapsible-body");
+        div2.style.zIndex = "6";
+        div2.style.backgroundColor = "white";
         li.appendChild(div2);
         
         var div3 = document.createElement("DIV");
