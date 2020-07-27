@@ -260,7 +260,7 @@
       }
       
       function load_operating_system(username,password){
-        if (password.value == atob(JSON.parse(localStorage.getItem("user-" + username))[1])){
+        if (password == atob(JSON.parse(localStorage.getItem("user-" + username))[1])){
           if (JSON.parse(localStorage.getItem("settings-" + username)) == [])
             var settings = ["https://i.imgur.com/uIRQQIZ.jpg","#d2d256"];
           else
@@ -281,10 +281,8 @@
           
           toggle_modal_loading(false);
           console.log("Hidden loading modal.");
-        } else {
-          console.log("Password given at load_operating_system is incorrect: " + password.value);
-          console.log("Correct password: " + atob(JSON.parse(localStorage.getItem("user-" + username))[1]));
-        }
+        } else
+          console.log("Password given at load_operating_system is incorrect: " + password);
       }
       
       function login_user(username){
