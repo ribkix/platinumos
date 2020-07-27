@@ -245,7 +245,7 @@
         document.body.style.removeProperty("background-image");
         console.log("Cleared background.");
         document.body.style.backgroundImage = "url(" + settings[0] + ");";
-        console.log("Set OS wallpaper: " + settings[0]);
+        console.log("Set OS wallpaper: " + settings[0] + " (\"url(" + settings[0] + ");\")");
         document.querySelectorAll(".accent-bg-os").forEach(function(abg){
           abg.style.setProperty("background-color",settings[1],"important");
         });
