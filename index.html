@@ -11,15 +11,6 @@
     <link rel="icon" href="https://i.imgur.com/pDYZybj.png">
   </head>
   <body>
-    <header id="os-header">
-      <nav>
-        <div class="navbar-fixed accent-bg-os">
-          <div class="nav-wrapper" id="accent-color">
-            <a class="brand-logo center" id="os-logo">Loading...</a>
-          </div>
-        </div>
-      </nav>
-    </header>
     <main>
       <div id="modal-loading" class="modal bottom-sheet">
         <div class="modal-content">
@@ -275,11 +266,6 @@
           
           console.log("Updated OS theme.");
           
-          document.getElementById("os-header").style.display = "block";
-          console.log("Showed OS header.");
-          document.getElementById("os-logo").innerHTML = username;
-          console.log("Updated username in header.");
-          
           toggle_modal_loading(false);
           console.log("Hidden loading modal.");
         } else
@@ -422,27 +408,43 @@
       }
       
       $(document).ready(function(){
-        document.getElementById("os-header").style.display = "none";
         document.getElementById("operating-system").style.display = "none";
+        console.log("Hidden operating system.");
         document.getElementById("username-already-exists").style.display = "none";
+        console.log("Hidden error message for creating users.");
         
         $('#tap-target-new-user-fab').tapTarget();
+        console.log("Initialized new user FAB.");
         $('#modal-new-user-fab').modal();
+        console.log("Initialized new user modal.");
         $('#modal-delete-user').modal();
+        console.log("Initialized delete user modal.");
         $('#modal-loading').modal({dismissible:false});
+        console.log("Initialized loading modal.");
+        
+        document.body.style.backgroundImage = "url(https://i.imgur.com/0GqXjvZ.jpg)";
+        console.log("Updated background.");
         
         document.getElementById("username").addEventListener("change", (event) => {
           document.getElementById("username-preview").innerHTML = event.target.value;
         });
         
+        console.log("Added change event listener to username field in create new user modal.");
+        
         document.getElementById("picture").addEventListener("change", (event) => {
           document.getElementById("picture-preview").src = event.target.value;
         });
         
+        console.log("Added change event listener to picture field in create new user modal.");
+        
+        if (localStorage.length == 10){
+          document.getElementById("new-user-fab-float").remove();
+          console.log("Removed new user FAB due to max users.");
+        }
+        
         fadeOutLoadStart();
         
-        if (localStorage.length == 10)
-          document.getElementById("new-user-fab-float").remove();
+        console.log("Faded out loading screen.")
       });
       
       function create_user_password_visibility(){
@@ -477,7 +479,6 @@
 </html>
 <style>
   body {
-    background-image: url(https://i.imgur.com/0GqXjvZ.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
