@@ -23,6 +23,19 @@
         </div>
       </div>
       
+      <div id="modal-loading" class="modal">
+        <div class="modal-content">
+          <center>
+            <div class="center">
+              <h4>Loading...</h4>
+              <div class="progress">
+                <div class="indeterminate"></div>
+            </div>
+            </div>
+          </center>
+        </div>
+      </div>
+      
       <div id="modal-new-user-fab" class="modal modal-fixed-footer">
         <center>
           <div class="modal-content">
@@ -103,7 +116,15 @@
     <script src="https://platinumos.tk/materialize.min.js"></script>
     <script>
       var accent_bg = "#d2d256";
-
+      
+      function toggle_modal_loading(visible){
+        var instance = M.Modal.getInstance(document.getElementById("modal-loading");
+        if (visible)
+          instance.open();
+        else
+          instance.close();
+      }
+      
       function update_theme(){
         document.querySelectorAll(".accent-bg").forEach(function(abg){
           abg.style.setProperty("background-color",accent_bg,"important");
@@ -213,6 +234,17 @@
         instance.open();
       }
       
+      function login_user(username){
+        var pw = document.getElementById("password-" + username);
+        if (pw.value != JSON.parse(localStorage.getItem("user-" + username))[1])
+          pw.classList.add("invalid");
+        else {
+          if (pw.classList.contains("invalid"))
+            pw.classList.remove("invalid");
+          toggle_modal_loading(true);
+        }
+      }
+      
       function generate_user_card(parent,username,picture){
         var col = document.createElement("DIV");
         col.classList.add("col");
@@ -302,6 +334,7 @@
         a2.classList.add("btn");
         a2.classList.add("accent-bg");
         a2.innerHTML = "OK";
+        a2.href = "javascript:login_user('" + username + "');";
         div3.appendChild(a2);
         
         $('#collapsible-user-' + username).collapsible();
@@ -331,6 +364,7 @@
         $('#tap-target-new-user-fab').tapTarget();
         $('#modal-new-user-fab').modal();
         $('#modal-delete-user').modal();
+        $('#modal-loading').modal();
         
         document.getElementById("username").addEventListener("change", (event) => {
           document.getElementById("username-preview").innerHTML = event.target.value;
@@ -425,6 +459,15 @@
   }
   
   .loading-content {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+  
+  .center {
     margin: 0;
     position: absolute;
     top: 50%;
