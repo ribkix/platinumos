@@ -281,8 +281,10 @@
           
           toggle_modal_loading(false);
           console.log("Hidden loading modal.");
-        } else
-          console.log("Password given at load_operating_system is incorrect.");
+        } else {
+          console.log("Password given at load_operating_system is incorrect: " + password.value);
+          console.log("Correct password: " + atob(JSON.parse(localStorage.getItem("user-" + username))[1]));
+        }
       }
       
       function login_user(username){
