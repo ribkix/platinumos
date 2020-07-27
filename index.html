@@ -252,27 +252,37 @@
       
       function os_update_theme(settings){
         document.body.style.backgroundImage = "url(" + settings[0] + ");";
+        console.log("Set OS wallpaper: " + settings[0]);
         document.querySelectorAll(".accent-bg-os").forEach(function(abg){
           abg.style.setProperty("background-color",settings[1],"important");
         });
+        console.log("Set OS accent color: " + settings[1]);
       }
       
       function load_operating_system(username,password){
         if (password.value == atob(JSON.parse(localStorage.getItem("user-" + username))[1])){
-          if (JSON.parse(localStorage.getItem("settings-" + username)) == []){
+          if (JSON.parse(localStorage.getItem("settings-" + username)) == [])
             var settings = ["https://i.imgur.com/uIRQQIZ.jpg","#d2d256"];
-          }
+          else
+            var settings = JSON.parse(localStorage.getItem("settings-" + username));
+          console.log("Settings set: " + JSON.stringify(settings));
           if (JSON.parse(localStorage.getItem("apps-" + username)) == []){
             // Soon TM
           }
           
           os_update_theme(settings);
           
+          console.log("Updated OS theme.");
+          
           document.getElementById("os-header").style.display = "block";
+          console.log("Showed OS header.");
           document.getElementById("os-logo").innerHTML = username;
+          console.log("Updated username in header.");
           
           toggle_modal_loading(false);
-        }
+          console.log("Hidden loading modal.");
+        } else
+          console.log("Password given at load_operating_system is incorrect.");
       }
       
       function login_user(username){
