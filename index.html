@@ -233,7 +233,7 @@
         a.classList.add("waves-effect");
         a.classList.add("waves-light");
         a.classList.add("red");
-        a.style.zIndex = "5";
+        a.style = "z-index:5;";
         card_image.appendChild(a);
         
         var i = document.createElement("I");
@@ -294,7 +294,7 @@
         div3.appendChild(input);
         
         var label = document.createElement("LABEL");
-        label.for = "password";
+        label.for = "password-" + username;
         label.innerHTML = "Password";
         div3.appendChild(label);
         
