@@ -137,8 +137,7 @@
         var d = document.getElementById("user-list").getElementsByTagName("")
         var c = 0;
         for (i=0;i<d.length;i++){
-          console.log(d[i]);
-          if (d[i].classList.contains("col"))
+          if (d[i].tagName == "DIV")
             c++;
           else if (d[i].tagName == "BR")
             c = c - 5;
