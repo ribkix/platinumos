@@ -73,8 +73,8 @@
         </div>
       </div>
       
-      <a class="btn-floating btn-large waves-effect waves-light accent-bg" id="new-user-fab" style="position:fixed;bottom:10px;left:10px;" href="javascript:create_new_user();"><i class="material-icons">add</i></a>
-      <div class="tap-target accent-bg" id="tap-target-new-user-fab" data-target="new-user-fab">
+      <a class="btn-floating btn-large waves-effect waves-light accent-bg" id="new-user-fab-float" style="position:fixed;bottom:10px;left:10px;" href="javascript:create_new_user();"><i class="material-icons">add</i></a>
+      <div class="tap-target accent-bg" id="tap-target-new-user-fab" data-target="new-user-fab-float">
         <div class="tap-target-content">
           <h5>Create a new user</h5>
           <p>Create a new user by pressing this button.</p>
@@ -86,9 +86,7 @@
       <br>
       <center>
         <div class="container">
-          <div class="row" id="user-list">
-            
-          </div>
+          <div class="row" id="user-list"></div>
         </div>
       </center>
       
@@ -330,7 +328,7 @@
               document.getElementById("card-new-user").remove();
           generate_user_card(document.getElementById("user-list"),document.getElementById("username").value,document.getElementById("picture").value);
           if (localStorage.length == 10)
-            document.getElementById("new-user-fab").remove();
+            document.getElementById("new-user-fab-float").remove();
         } else
           document.getElementById("username-already-exists").style.display = "block";
       }
@@ -353,7 +351,7 @@
         fadeOutLoadStart();
         
         if (localStorage.length == 10)
-          document.getElementById("new-user-fab").remove();
+          document.getElementById("new-user-fab-float").remove();
       });
       
       function create_user_password_visibility(){
