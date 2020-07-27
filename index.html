@@ -148,14 +148,13 @@
         if (col){
           var col = document.createElement("DIV");
           col.classList.add("col");
-          col.id = "user-card-" + username;
+          if (card_id != null)
+            col.id = card_id;
           parent.appendChild(col);
           
           var card = document.createElement("DIV");
           card.classList.add("card");
           card.style = "width:175px;";
-          if (card_id != null)
-            card.id = card_id;
           col.appendChild(card);
         } else {
           var card = document.createElement("DIV");
