@@ -288,15 +288,11 @@
         div2.appendChild(div3);
         
         var input = document.createElement("INPUT");
+        input.placeholder = "Password";
         input.id = "password-" + username;
         input.type = "password";
         input.classList.add("validate");
         div3.appendChild(input);
-        
-        var label = document.createElement("LABEL");
-        label.for = "password-" + username;
-        label.innerHTML = "Password";
-        div3.appendChild(label);
         
         var a2 = document.createElement("A");
         a2.classList.add("waves-effect");
