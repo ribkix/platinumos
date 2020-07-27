@@ -165,12 +165,12 @@
       function generate_user_card(parent,username,picture){
         var col = document.createElement("DIV");
         col.classList.add("col");
+        col.id = "user-card-" + username;
         parent.appendChild(col);
         
         var card = document.createElement("DIV");
         card.classList.add("card");
         card.style = "width:225px;";
-        card.id = "user-card-" + username;
         col.appendChild(card);
 
         var card_image = document.createElement("DIV");
