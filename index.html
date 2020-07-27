@@ -138,11 +138,8 @@
           localStorage.setItem("settings-" + document.getElementById("username").value,JSON.stringify([]));
           var instance = M.Modal.getInstance(document.getElementById("modal-new-user-fab"));
           instance.close();
-        } else {
-          var instance = M.Modal.getInstance(document.getElementById("modal-new-user-fab"));
-          instance.close();
+        } else
           document.getElementById("username-already-exists").style.display = "block";
-        }
       }
       
       $(document).ready(function(){
