@@ -244,7 +244,10 @@
       function os_update_theme(settings){
         document.body.style.removeProperty("background-image");
         console.log("Cleared background.");
-        document.body.style.backgroundImage = "url(" + settings[0] + ");";
+        document.getElementById("operating-system").style.backgroundImage = "url(" + settings[0] + ");";
+        document.getElementById("operating-system").style.backgroundRepeat = "none";
+        document.getElementById("operating-system").style.backgroundSize = "cover";
+        document.getElementById("operating-system").style.backgroundPosition: "center center";
         console.log("Set OS wallpaper: " + settings[0] + " (\"url(" + settings[0] + ");\")");
         document.querySelectorAll(".accent-bg-os").forEach(function(abg){
           abg.style.setProperty("background-color",settings[1],"important");
