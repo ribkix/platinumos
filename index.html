@@ -57,7 +57,7 @@
           </div>
         </center>
         <div class="modal-footer">
-          <a class="waves-effect waves-light btn accent-bg">Create</a>
+          <a class="waves-effect waves-light btn accent-bg" onclick="create_user();">Create</a>
         </div>
       </div>
       
@@ -129,7 +129,14 @@
               clearInterval(fadeEffect);
         },50);
       }
-
+      
+      function create_user(){
+        if (!localStorage.getItem("user-" + document.getElementById("username"))){
+          localStorage.setItem("user-" + localStorage.getElementById("username"),JSON.Stringify([localStorage.getElementById("username"),localStorage.getElementById("password"),localStorage.getElementById("picture")]));
+          M.toast({html:document.getElementById("username") + " created!"});
+        } else
+          M.toast({html:document.getElementById("username") + " already exists!"});
+      }
       
       $(document).ready(function(){
         $('#tap-target-new-user-fab').tapTarget();
