@@ -82,10 +82,12 @@
       
       <center id="loading">
         <div class="loading-screen">
-          <h1>Loading...</h1>
-          <br>
-          <div class="progress" style="width:60%;">
-            <div class="indeterminate"></div>
+          <div class="loading-content">
+            <h1>Loading...</h1>
+            <br>
+            <div class="progress" style="width:60%;">
+              <div class="indeterminate"></div>
+            </div>
           </div>
         </div>
       </center>
@@ -259,7 +261,6 @@
   }
   
   .loading-screen {
-    opacity: 0.6;
     width: 100%;
     height: 100%;
     background-color: white;
@@ -267,5 +268,14 @@
     top: 0;
     left: 0;
     z-index: 998;
+  }
+  
+  .loading-content {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
   }
 </style>
