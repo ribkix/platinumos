@@ -22,7 +22,7 @@
     <main>
       <div id="modal-new-user-fab" class="modal">
         <center>
-          <div class="modal-content">
+          <div class="modal-content modal-fixed-footer">
             <h4>Create new user</h4>
             <p>Create a new user.</p>
             <div class="container">
@@ -133,90 +133,6 @@
         },50);
       }
       
-      function actually_create_user_lmao(){
-        if (!localStorage.getItem("user-" + document.getElementById("username").value)){
-          document.getElementById("username-already-exists").style.display = "none";
-          localStorage.setItem("user-" + document.getElementById("username").value,JSON.stringify([document.getElementById("username").value,document.getElementById("password").value,document.getElementById("picture").value]));
-          localStorage.setItem("settings-" + document.getElementById("username").value,JSON.stringify([]));
-          var instance = M.Modal.getInstance(document.getElementById("modal-new-user-fab"));
-          instance.close();
-        } else
-          document.getElementById("username-already-exists").style.display = "block";
-      }
-      
-      $(document).ready(function(){
-        document.getElementById("username-already-exists").style.display = "none";
-        
-        $('#tap-target-new-user-fab').tapTarget();
-        $('#modal-new-user-fab').modal();
-        
-        document.getElementById("username").addEventListener("change", (event) => {
-          document.getElementById("username-preview").innerHTML = event.target.value;
-        });
-        
-        document.getElementById("picture").addEventListener("change", (event) => {
-          document.getElementById("picture-preview").src = event.target.value;
-        });
-        
-        fadeOutLoadStart();
-      });
-      
-      function create_user_password_visibility(){
-        var eye = document.getElementById("password-eye");
-        var input = document.getElementById("password");
-        if (eye.innerHTML == "visibility"){
-          input.type = "text";
-          eye.innerHTML = "visibility_off";
-        } else {
-          input.type = "password";
-          eye.innerHTML = "visibility";
-        }
-      }
-
-      function generate_card(parent,title,picture,description,button,button_href){
-        var card = document.createElement("DIV");
-        card.classList.add("card");
-        card.style = "width:175px;";
-        parent.appendChild(card);
-
-        var card_image = document.createElement("DIV");
-        card_image.classList.add("card-image");
-        card.appendChild(card_image);
-
-        var img = document.createElement("IMG");
-        img.src = picture;
-        img.style = "width:175px;height:175px;";
-        card_image.appendChild(img);
-
-        var card_stacked = document.createElement("DIV");
-        card_stacked.classList.add("card-stacked");
-        card.appendChild(card_stacked);
-
-        var card_content = document.createElement("DIV");
-        card_content.classList.add("card-content");
-        card_stacked.appendChild(card_content);
-
-        var h5 = document.createElement("H5");
-        h5.innerHTML = description;
-        card_content.appendChild(h5);
-
-        var card_action = document.createElement("DIV");
-        card_action.classList.add("card-action");
-        card_action.classList.add("white-fgcolor");
-        card.appendChild(card_action);
-
-        var a = document.createElement("A");
-        a.classList.add("accent-bg")
-        a.classList.add("btn");
-        a.classList.add("waves-effect");
-        a.classList.add("waves-light");
-        a.href = button_href;
-        a.innerHTML = button;
-        card_action.appendChild(a);
-
-        update_theme();
-      }
-      
       function generate_user_card(parent,username,picture){
         var card = document.createElement("DIV");
         card.classList.add("card");
@@ -305,6 +221,95 @@
         $('#collapsible-user-' + username).collapsible();
         
         update_theme();
+    }
+      
+      function actually_create_user_lmao(){
+        if (!localStorage.getItem("user-" + document.getElementById("username").value)){
+          document.getElementById("username-already-exists").style.display = "none";
+          localStorage.setItem("user-" + document.getElementById("username").value,JSON.stringify([document.getElementById("username").value,document.getElementById("password").value,document.getElementById("picture").value]));
+          localStorage.setItem("settings-" + document.getElementById("username").value,JSON.stringify([]));
+          var instance = M.Modal.getInstance(document.getElementById("modal-new-user-fab"));
+          instance.close();
+          if (document.getElementById("card-new-user"))
+              document.getElementById("card-new-user").remove();
+          generate_user_card(document.getElementById("user-list"),document.getElementById("username").value,document.getElementById("picture").value);
+        } else
+          document.getElementById("username-already-exists").style.display = "block";
+      }
+      
+      $(document).ready(function(){
+        document.getElementById("username-already-exists").style.display = "none";
+        
+        $('#tap-target-new-user-fab').tapTarget();
+        $('#modal-new-user-fab').modal();
+        
+        document.getElementById("username").addEventListener("change", (event) => {
+          document.getElementById("username-preview").innerHTML = event.target.value;
+        });
+        
+        document.getElementById("picture").addEventListener("change", (event) => {
+          document.getElementById("picture-preview").src = event.target.value;
+        });
+        
+        fadeOutLoadStart();
+      });
+      
+      function create_user_password_visibility(){
+        var eye = document.getElementById("password-eye");
+        var input = document.getElementById("password");
+        if (eye.innerHTML == "visibility"){
+          input.type = "text";
+          eye.innerHTML = "visibility_off";
+        } else {
+          input.type = "password";
+          eye.innerHTML = "visibility";
+        }
+      }
+
+      function generate_card(parent,card_id,title,picture,description,button,button_href){
+        var card = document.createElement("DIV");
+        card.classList.add("card");
+        card.style = "width:175px;";
+        if (card_id != null)
+          card.id = card_id;
+        parent.appendChild(card);
+
+        var card_image = document.createElement("DIV");
+        card_image.classList.add("card-image");
+        card.appendChild(card_image);
+
+        var img = document.createElement("IMG");
+        img.src = picture;
+        img.style = "width:175px;height:175px;";
+        card_image.appendChild(img);
+
+        var card_stacked = document.createElement("DIV");
+        card_stacked.classList.add("card-stacked");
+        card.appendChild(card_stacked);
+
+        var card_content = document.createElement("DIV");
+        card_content.classList.add("card-content");
+        card_stacked.appendChild(card_content);
+
+        var h5 = document.createElement("H5");
+        h5.innerHTML = description;
+        card_content.appendChild(h5);
+
+        var card_action = document.createElement("DIV");
+        card_action.classList.add("card-action");
+        card_action.classList.add("white-fgcolor");
+        card.appendChild(card_action);
+
+        var a = document.createElement("A");
+        a.classList.add("accent-bg")
+        a.classList.add("btn");
+        a.classList.add("waves-effect");
+        a.classList.add("waves-light");
+        a.href = button_href;
+        a.innerHTML = button;
+        card_action.appendChild(a);
+
+        update_theme();
       }
 
       function load_users(){
@@ -316,7 +321,7 @@
             }
           }
         } else {
-          generate_card(document.getElementById("user-list"),"New User","https://i.imgur.com/XB5aKlS.png","Create a new user","CREATE","javascript:create_user();",null,null);
+          generate_card(document.getElementById("user-list"),"card-new-user","New User","https://i.imgur.com/XB5aKlS.png","Create a new user","CREATE","javascript:create_user();",null,null);
         }
       }
 
