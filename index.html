@@ -101,15 +101,6 @@
     <script src="https://platinumos.tk/materialize.min.js"></script>
     <script>
       var accent_bg = "#d2d256";
-      
-      function toggle_loading(visible){
-        var loading = document.getElementById("loading");
-        if (visible){
-          loading.style.display = "block";
-        } else {
-          loading.style.display = "none";
-        }
-      }
 
       function update_theme(){
         document.querySelectorAll(".accent-bg").forEach(function(abg){
@@ -127,6 +118,19 @@
         instance.open();
       }
       
+      function fadeOutLoadStart() {
+        var fadeTarget = document.getElementById("loading");
+        var fadeEffect = setInterval(function(){
+          if (!fadeTarget.style.opacity) {
+              fadeTarget.style.opacity = 1;
+          if (fadeTarget.style.opacity > 0)
+              fadeTarget.style.opacity -= 0.1;
+          else
+              clearInterval(fadeEffect);
+        },200);
+      }
+
+      
       $(document).ready(function(){
         $('#tap-target-new-user-fab').tapTarget();
         $('#modal-new-user-fab').modal();
@@ -139,7 +143,7 @@
           document.getElementById("picture-preview").src = event.target.value;
         });
         
-        // toggle_loading(false);
+        fadeOutLoadStart();
       });
       
       function create_user_password_visibility(){
