@@ -242,6 +242,8 @@
       }
       
       function os_update_theme(settings){
+        document.body.style.removeProperty("background-image");
+        console.log("Cleared background.");
         document.body.style.backgroundImage = "url(" + settings[0] + ");";
         console.log("Set OS wallpaper: " + settings[0]);
         document.querySelectorAll(".accent-bg-os").forEach(function(abg){
