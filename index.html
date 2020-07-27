@@ -366,7 +366,7 @@
         $('#tap-target-new-user-fab').tapTarget();
         $('#modal-new-user-fab').modal();
         $('#modal-delete-user').modal();
-        $('#modal-loading').modal();
+        $('#modal-loading').modal({dismissible:false});
         
         document.getElementById("username").addEventListener("change", (event) => {
           document.getElementById("username-preview").innerHTML = event.target.value;
