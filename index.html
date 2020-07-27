@@ -20,6 +20,17 @@
     </header>
     
     <main>
+      <div id="modal-delete-user" class="modal modal-fixed-footer">
+        <div class="modal-content">
+          <h4>Are you sure?</h4>
+          <p id="modal-delete-user-p">Are you sure you want to delete "user"?</p>
+        </div>
+        <div class="modal-footer">
+          <a id="modal-delete-user-yes" class="modal-close waves-effect waves-green btn-flat">Yes</a>
+          <a class="waves-effect waves-light btn accent-bg" id="modal-delete-user-cancel">CANCEL</a>
+        </div>
+      </div>
+      
       <div id="modal-new-user-fab" class="modal modal-fixed-footer">
         <center>
           <div class="modal-content">
@@ -133,6 +144,24 @@
         },50);
       }
       
+      function remove_user(user){
+        var instance = M.Modal.getInstance(document.getElementById("modal-delete-user"));
+        instance.close();
+        localStorage.getItem("settings-" + user);
+        localStorage.getItem("user-" + user);
+        localStorage.removeItem("settings-" + user);
+        localStorage.removeItem("user-" + user);
+        document.getElementById("user-card-" + user).remove();
+      }
+      
+      function delete_user(user){
+        var instance = M.Modal.getInstance(document.getElementById("modal-delete-user"));
+        document.getElementById("modal-delete-user-p").innerHTML = "Are you sure you want to delete \"" + user + "\"?";
+        document.getElementById("modal-delete-user-yes").href = "javascript:remove_user('" + user + "');";
+        document.getElementById("modal-delete-user-cancel").href ="javascript: M.Modal.getInstance(document.getElementById('modal-delete-user')).close();";
+        instance.open();
+      }
+      
       function generate_user_card(parent,username,picture){
         var col = document.createElement("DIV");
         col.classList.add("col");
@@ -141,6 +170,7 @@
         var card = document.createElement("DIV");
         card.classList.add("card");
         card.style = "width:225px;";
+        card.id = "user-card-" + username;
         col.appendChild(card);
 
         var card_image = document.createElement("DIV");
@@ -154,6 +184,7 @@
         a.classList.add("waves-light");
         a.classList.add("red");
         a.style = "z-index:5;";
+        a.href = "javascript:delete_user('" + username + "');";
         card_image.appendChild(a);
         
         var i = document.createElement("I");
@@ -248,6 +279,7 @@
         
         $('#tap-target-new-user-fab').tapTarget();
         $('#modal-new-user-fab').modal();
+        $('#modal-delete-user').modal();
         
         document.getElementById("username").addEventListener("change", (event) => {
           document.getElementById("username-preview").innerHTML = event.target.value;
