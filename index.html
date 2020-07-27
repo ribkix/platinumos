@@ -238,7 +238,7 @@
       
       function login_user(username){
         var pw = document.getElementById("password-" + username);
-        if (pw.value != JSON.parse(localStorage.getItem("user-" + username))[1])
+        if (pw.value != atob(JSON.parse(localStorage.getItem("user-" + username))[1]))
           pw.classList.add("invalid");
         else {
           if (pw.classList.contains("invalid"))
@@ -348,7 +348,7 @@
         if (!localStorage.getItem("user-" + document.getElementById("username").value)){
           if (document.getElementById("password").value.length >= 8){
             document.getElementById("username-already-exists").style.display = "none";
-            localStorage.setItem("user-" + document.getElementById("username").value,JSON.stringify([document.getElementById("username").value,document.getElementById("password").value,document.getElementById("picture").value]));
+            localStorage.setItem("user-" + document.getElementById("username").value,JSON.stringify([document.getElementById("username").value,btoa(document.getElementById("password")),document.getElementById("picture").value]));
             localStorage.setItem("settings-" + document.getElementById("username").value,JSON.stringify([]));
             var instance = M.Modal.getInstance(document.getElementById("modal-new-user-fab"));
             instance.close();
