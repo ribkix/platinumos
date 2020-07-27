@@ -134,14 +134,6 @@
       }
       
       function generate_user_card(parent,username,picture){
-        var countBr = parent.getElementsByTagName("br").length;
-        var count = parent.getElementsByTagName("div").length - (br * 5);
-        
-        if (count == 5){
-          var br = document.createElement("BR");
-          parent.appendChild(br);
-        }
-        
         var col = document.createElement("DIV");
         col.classList.add("col");
         parent.appendChild(col);
@@ -245,6 +237,8 @@
           if (document.getElementById("card-new-user"))
               document.getElementById("card-new-user").remove();
           generate_user_card(document.getElementById("user-list"),document.getElementById("username").value,document.getElementById("picture").value);
+          if (localStorage.length == 10)
+            document.getElementById("new-user-fab").remove();
         } else
           document.getElementById("username-already-exists").style.display = "block";
       }
@@ -264,6 +258,9 @@
         });
         
         fadeOutLoadStart();
+        
+        if (localStorage.length == 10)
+          document.getElementById("new-user-fab").remove();
       });
       
       function create_user_password_visibility(){
