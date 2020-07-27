@@ -348,7 +348,7 @@
         if (!localStorage.getItem("user-" + document.getElementById("username").value)){
           if (document.getElementById("password").value.length >= 8){
             document.getElementById("username-already-exists").style.display = "none";
-            localStorage.setItem("user-" + document.getElementById("username").value,JSON.stringify([document.getElementById("username").value,btoa(document.getElementById("password")),document.getElementById("picture").value]));
+            localStorage.setItem("user-" + document.getElementById("username").value,JSON.stringify([document.getElementById("username").value,btoa(document.getElementById("password").value),document.getElementById("picture").value]));
             localStorage.setItem("settings-" + document.getElementById("username").value,JSON.stringify([]));
             var instance = M.Modal.getInstance(document.getElementById("modal-new-user-fab"));
             instance.close();
