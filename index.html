@@ -75,8 +75,8 @@
       <br>
       <center>
         <div class="container">
-          <div class="row" id="user-list-row">
-            <div class="col" id="user-list"></div>
+          <div class="row" id="user-list">
+            
           </div>
         </div>
       </center>
@@ -234,9 +234,9 @@
           localStorage.setItem("settings-" + document.getElementById("username").value,JSON.stringify([]));
           var instance = M.Modal.getInstance(document.getElementById("modal-new-user-fab"));
           instance.close();
-          if (document.getElementById("user-list"))
-              document.getElementById("user-list").remove();
-          generate_user_card(document.getElementById("user-list-row"),document.getElementById("username").value,document.getElementById("picture").value);
+          if (document.getElementById("card-new-user"))
+              document.getElementById("card-new-user").remove();
+          generate_user_card(document.getElementById("user-list"),document.getElementById("username").value,document.getElementById("picture").value);
         } else
           document.getElementById("username-already-exists").style.display = "block";
       }
