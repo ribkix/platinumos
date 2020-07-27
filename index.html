@@ -136,7 +136,7 @@
           localStorage.setItem("settings-" + document.getElementById("username").value,JSON.stringify([]));
           var instance = M.Modal.getInstance(document.getElementById("modal-new-user-fab"));
           instance.close();
-          M.toast({html:"<span>" + document.getElementById("username").value + " created!</span>"});
+          M.toast({html:'<span style="background-color:rgba(0,0,0,0.87);">' + document.getElementById("username").value + " created!</span>"});
         } else {
           var instance = M.Modal.getInstance(document.getElementById("modal-new-user-fab"));
           instance.close();
