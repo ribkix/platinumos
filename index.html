@@ -218,7 +218,7 @@
       function generate_user_card(parent,username,picture){
         var card = document.createElement("DIV");
         card.classList.add("card");
-        card.style = "width:175px;";
+        card.style = "width:225px;";
         parent.appendChild(card);
 
         var card_image = document.createElement("DIV");
@@ -240,7 +240,7 @@
 
         var img = document.createElement("IMG");
         img.src = picture;
-        img.style = "width:175px;height:175px;";
+        img.style = "width:225px;height:225px;";
         card_image.appendChild(img);
 
         var card_stacked = document.createElement("DIV");
@@ -292,17 +292,12 @@
         label.innerHTML = "Password";
         div3.appendChild(label);
         
-        var br = document.createElement("BR");
-        div3.appendChild(br);
-        
-        var br2 = document.createElement("BR");
-        div3.appendChild(br2);
-        
         var a2 = document.createElement("A");
         a2.classList.add("waves-effect");
         a2.classList.add("waves-light");
         a2.classList.add("btn");
         a2.classList.add("accent-bg");
+        a.innerHTML = "OK";
         div3.appendChild(a2);
         
         $('#collapsible-user-' + username).collapsible();
