@@ -126,8 +126,10 @@
               fadeTarget.style.opacity = 1;
           if (fadeTarget.style.opacity > 0)
               fadeTarget.style.opacity -= 0.1;
-          else
-              clearInterval(fadeEffect);
+          else {
+            fadeTarget.remove();
+            clearInterval(fadeEffect);
+          }
         },50);
       }
       
@@ -157,7 +159,6 @@
         });
         
         fadeOutLoadStart();
-        document.getElementById("loading").remove();
       });
       
       function create_user_password_visibility(){
