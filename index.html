@@ -346,18 +346,25 @@
       
       function actually_create_user_lmao(){
         if (!localStorage.getItem("user-" + document.getElementById("username").value)){
-          document.getElementById("username-already-exists").style.display = "none";
-          localStorage.setItem("user-" + document.getElementById("username").value,JSON.stringify([document.getElementById("username").value,document.getElementById("password").value,document.getElementById("picture").value]));
-          localStorage.setItem("settings-" + document.getElementById("username").value,JSON.stringify([]));
-          var instance = M.Modal.getInstance(document.getElementById("modal-new-user-fab"));
-          instance.close();
-          if (document.getElementById("card-new-user"))
-              document.getElementById("card-new-user").remove();
-          generate_user_card(document.getElementById("user-list"),document.getElementById("username").value,document.getElementById("picture").value);
-          if (localStorage.length == 10)
-            document.getElementById("new-user-fab-float").remove();
-        } else
+          if (document.getElementById("password").value.length >= 8){
+            document.getElementById("username-already-exists").style.display = "none";
+            localStorage.setItem("user-" + document.getElementById("username").value,JSON.stringify([document.getElementById("username").value,document.getElementById("password").value,document.getElementById("picture").value]));
+            localStorage.setItem("settings-" + document.getElementById("username").value,JSON.stringify([]));
+            var instance = M.Modal.getInstance(document.getElementById("modal-new-user-fab"));
+            instance.close();
+            if (document.getElementById("card-new-user"))
+                document.getElementById("card-new-user").remove();
+            generate_user_card(document.getElementById("user-list"),document.getElementById("username").value,document.getElementById("picture").value);
+            if (localStorage.length == 10)
+              document.getElementById("new-user-fab-float").remove();
+          } else {
+            document.getElementById("username-already-exists").innerHTML = "Password must contain atleast 8 characters!";
+            document.getElementById("username-already-exists").style.display = "block";
+          }
+        } else {
+          document.getElementById("username-already-exists").innerHTML = "Username already exists!";
           document.getElementById("username-already-exists").style.display = "block";
+        }
       }
       
       $(document).ready(function(){
