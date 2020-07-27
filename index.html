@@ -41,6 +41,7 @@
                     <input id="picture" type="text" class="validate" value="https://i.imgur.com/XB5aKlS.png">
                     <label for="picture">Profile Picture (Image URL)</label>
                   </div>
+                  <p style="color:red;" id="username-already-exists">Username already exists!</p>
                 </div>
                 <div class="col">
                   <div class="card" style="width:125px;">
@@ -132,19 +133,21 @@
       
       function actually_create_user_lmao(){
         if (!localStorage.getItem("user-" + document.getElementById("username").value)){
+          document.getElementById("username-already-exists").style.display = "none";
           localStorage.setItem("user-" + document.getElementById("username").value,JSON.stringify([document.getElementById("username").value,document.getElementById("password").value,document.getElementById("picture").value]));
           localStorage.setItem("settings-" + document.getElementById("username").value,JSON.stringify([]));
           var instance = M.Modal.getInstance(document.getElementById("modal-new-user-fab"));
           instance.close();
-          M.toast({html:'<span style="background-color:rgba(0,0,0,0.87);">' + document.getElementById("username").value + " created!</span>"});
         } else {
           var instance = M.Modal.getInstance(document.getElementById("modal-new-user-fab"));
           instance.close();
-          M.toast({html:"<span>" + document.getElementById("username").value + " already exists!</span>"});
+          document.getElementById("username-already-exists").style.display = "block";
         }
       }
       
       $(document).ready(function(){
+        document.getElementById("username-already-exists").style.display = "none";
+        
         $('#tap-target-new-user-fab').tapTarget();
         $('#modal-new-user-fab').modal();
         
