@@ -144,13 +144,27 @@
         },50);
       }
       
-      function generate_card(parent,card_id,title,picture,description,button,button_href){
-        var card = document.createElement("DIV");
-        card.classList.add("card");
-        card.style = "width:175px;";
-        if (card_id != null)
-          card.id = card_id;
-        parent.appendChild(card);
+      function generate_card(col,parent,card_id,title,picture,description,button,button_href){
+        if (col){
+          var col = document.createElement("DIV");
+          col.classList.add("col");
+          col.id = "user-card-" + username;
+          parent.appendChild(col);
+          
+          var card = document.createElement("DIV");
+          card.classList.add("card");
+          card.style = "width:175px;";
+          if (card_id != null)
+            card.id = card_id;
+          col.appendChild(card);
+        } else {
+          var card = document.createElement("DIV");
+          card.classList.add("card");
+          card.style = "width:175px;";
+          if (card_id != null)
+            card.id = card_id;
+          parent.appendChild(card);
+        }
 
         var card_image = document.createElement("DIV");
         card_image.classList.add("card-image");
@@ -199,7 +213,7 @@
         localStorage.removeItem("user-" + user);
         document.getElementById("user-card-" + user).remove();
         if (localStorage.length == 0)
-          generate_card(document.getElementById("user-list"),"card-new-user","New User","https://i.imgur.com/XB5aKlS.png","Create a new user","CREATE","javascript:create_user();",null,null);
+          generate_card(true,document.getElementById("user-list"),"card-new-user","New User","https://i.imgur.com/XB5aKlS.png","Create a new user","CREATE","javascript:create_user();",null,null);
       }
       
       function delete_user(user){
@@ -364,7 +378,7 @@
             }
           }
         } else {
-          generate_card(document.getElementById("user-list"),"card-new-user","New User","https://i.imgur.com/XB5aKlS.png","Create a new user","CREATE","javascript:create_user();",null,null);
+          generate_card(true,document.getElementById("user-list"),"card-new-user","New User","https://i.imgur.com/XB5aKlS.png","Create a new user","CREATE","javascript:create_user();",null,null);
         }
       }
 
