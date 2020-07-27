@@ -261,13 +261,10 @@
       
       function load_operating_system(username,password){
         if (password == atob(JSON.parse(localStorage.getItem("user-" + username))[1])){
-          console.log(JSON.parse(localStorage.getItem("settings-" + username)))
-          console.log("settings-" + username);
           if (JSON.parse(localStorage.getItem("settings-" + username)) == []){
             var settings = ["https://i.imgur.com/uIRQQIZ.jpg","#d2d256"];
             console.log("Settings was empty, set default settings.")
-          }
-          else {
+          } else {
             var settings = JSON.parse(localStorage.getItem("settings-" + username));
             console.log("Loaded saved settings.");
           }
