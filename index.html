@@ -249,7 +249,7 @@
         document.getElementById("operating-system").style = "background-image:url(" + settings[0] + ");background-repeat:none;background-size:cover;background-position:center center;";
         console.log("Set OS wallpaper: " + settings[0] + " (\"url(" + settings[0] + ");\")");
         document.querySelectorAll(".accent-bg-os").forEach(function(abg){
-          abg.style.setProperty("background-color",settings[1],"important");
+          abg.style.setProperty("background-color","url(" + settings[1] + ")","important");
         });
         console.log("Set OS accent color: " + settings[1]);
       }
