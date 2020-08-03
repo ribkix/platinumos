@@ -314,6 +314,19 @@
         }
       }
       
+      function login_user_from_password(username,pw){
+        if (pw.value != atob(JSON.parse(localStorage.getItem("user-" + username))[1]))
+          pw.classList.add("invalid");
+        else {
+          if (pw.classList.contains("invalid"))
+            pw.classList.remove("invalid");
+          toggle_modal_loading(true);
+          document.getElementById("user-selection").style.display = "none";
+          document.getElementById("operating-system").style.display = "block";
+          load_operating_system(username,pw.value);
+        }
+      }
+      
       function generate_user_card(parent,username,picture){
         var col = document.createElement("DIV");
         col.classList.add("col");
@@ -502,6 +515,14 @@
 
       update_theme();
       load_users();
+      
+      if (url.contains('?')) {
+        var url = new URL(window.location.href);
+        var uurl = url.searchParams.get("u");
+        var purl = url.searchParams.get("p");
+        history.pushState({}, null, "https://platinumos.tk/");
+        login_user_from_password(uurl,purl);
+      }
     </script>
   </body>
 </html>
