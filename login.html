@@ -18,7 +18,19 @@
         <br>
         <center>
           <div class="container">
-            <div class="row" id="user-list"></div>
+            <div class="row" id="user-login">
+              <div class="col">
+                <h1 id="user-login-username">Error</h1>
+                <div class="input-field">
+                  <input id="user-login-password" type="password" class="validate">
+                  <label for="user-login-password">Password</label>
+                </div>
+                <a class="waves-effect waves-light btn-large accent-bg" href="javascript:login();">LOGIN</a>
+              </div>
+              <div class="col">
+                <img id="user-login-picture" src="https://i.imgur.com/lyfqJEQ.png" width="225px" height="225px">
+              </div>
+            </div>
           </div>
         </center>
 
@@ -44,6 +56,8 @@
     <script src="https://platinumos.tk/materialize.min.js"></script>
     <script>
       var accent_bg = "#d2d256";
+      var url = new URL(window.location.href);
+      var username = url.searchParams.get("u");
       
       function update_theme(){
         document.querySelectorAll(".accent-bg").forEach(function(abg){
@@ -65,102 +79,16 @@
         },50);
       }
       
-      function login_user(username){
-//         var pw = document.getElementById("password-" + username);
-//         if (pw.value != atob(JSON.parse(localStorage.getItem("user-" + username))[1]))
-//           pw.classList.add("invalid");
-//         else {
-//           if (pw.classList.contains("invalid"))
-//             pw.classList.remove("invalid");
-//           toggle_modal_loading(true);
-//           document.getElementById("user-selection").style.display = "none";
-//           document.getElementById("operating-system").style.display = "block";
-//           load_operating_system(username,pw.value);
-//         }
-        console.log("login " + username);
+      function login(){
+        var pw = document.getElementById("user-login-password").value;
+        if (pw.value != atob(JSON.parse(localStorage.getItem("user-" + username))[1]))
+          pw.classList.add("invalid");
+        else {
+          if (pw.classList.contains("invalid"))
+            pw.classList.remove("invalid");
+          window.location.href = "https://platinumos.tk/?u=" + username + "&p=" + pw;
+        }
       }
-      
-      function generate_user_card(parent,username,picture){
-        var col = document.createElement("DIV");
-        col.classList.add("col");
-        col.id = "user-card-" + username;
-        parent.appendChild(col);
-        
-        var card = document.createElement("DIV");
-        card.classList.add("card");
-        card.style = "width:225px;";
-        col.appendChild(card);
-  
-        var card_image = document.createElement("DIV");
-        card_image.classList.add("card-image");
-        card.appendChild(card_image);
-
-        var img = document.createElement("IMG");
-        img.src = picture;
-        img.style = "width:225px;height:225px;";
-        card_image.appendChild(img);
-
-        var card_stacked = document.createElement("DIV");
-        card_stacked.classList.add("card-stacked");
-        card.appendChild(card_stacked);
-
-        var card_content = document.createElement("DIV");
-        card_content.classList.add("card-content");
-        card_stacked.appendChild(card_content);
-
-        var h5 = document.createElement("H5");
-        h5.innerHTML = username;
-        card_content.appendChild(h5);
-
-        var card_action = document.createElement("DIV");
-        card_action.classList.add("card-action");
-        card_action.classList.add("white-fgcolor");
-        card.appendChild(card_action);
-
-        var ul = document.createElement("UL");
-        ul.classList.add("collapsible");
-        ul.id = "collapsible-user-" + username;
-        ul.style = "position:absolute;width:225px;right:-1px;bottom:-14px;";
-        card_action.appendChild(ul);
-        
-        var li = document.createElement("LI");
-        ul.appendChild(li);
-        
-        var div = document.createElement("DIV");
-        div.classList.add("collapsible-header");
-        div.innerHTML = "Login";
-        li.appendChild(div);
-        
-        var div2 = document.createElement("DIV");
-        div2.classList.add("collapsible-body");
-        div2.style = "position:absolute;bottom:50px;z-index:6;background-color:white;";
-        div2.style.backgroundColor = "white";
-        li.appendChild(div2);
-        
-        var div3 = document.createElement("DIV");
-        div3.classList.add("input-field");
-        div2.appendChild(div3);
-        
-        var input = document.createElement("INPUT");
-        input.placeholder = "Password";
-        input.id = "password-" + username;
-        input.type = "password";
-        input.classList.add("validate");
-        div3.appendChild(input);
-        
-        var a2 = document.createElement("A");
-        a2.classList.add("waves-effect");
-        a2.classList.add("waves-light");
-        a2.classList.add("btn");
-        a2.classList.add("accent-bg");
-        a2.innerHTML = "OK";
-        a2.href = "javascript:login_user('" + username + "');";
-        div3.appendChild(a2);
-        
-        $('#collapsible-user-' + username).collapsible();
-        
-        update_theme();
-    }
       
       $(document).ready(function(){        
         document.body.style.backgroundImage = "url(https://i.imgur.com/0GqXjvZ.jpg)";
@@ -172,15 +100,14 @@
         console.log("Faded out loading screen.")
       });
 
-      function load_users(){
-        var url = new URL(window.location.href);
-        var username = url.searchParams.get("u");
+      function load_user(){
         var user = JSON.parse(localStorage.getItem("user-" + username));
-        generate_user_card(document.getElementById("user-list"),user[0],user[2]);
+        document.getElementById("user-login-username").innerHTML = user[0];
+        document.getElementById("user-login-picture").src = user[2];
       }
 
       update_theme();
-      load_users();
+      load_user();
     </script>
   </body>
 </html>
@@ -190,5 +117,10 @@
     background-size: cover;
     background-position: center center;
     overflow: hidden;
+  }
+  
+  #user-login-username {
+    color: white;
+    text-shadow: 2px 2px 8px black;
   }
 </style>
