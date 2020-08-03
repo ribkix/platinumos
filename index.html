@@ -479,6 +479,15 @@
           console.log("Removed new user FAB due to max users.");
         }
         
+        if (window.location.href.includes("?")){
+          var url = new URL(window.location.href);
+          var uurl = url.searchParams.get("u");
+          var purl = url.searchParams.get("p");
+          history.pushState({}, null, "https://platinumos.tk/");
+          login_user_from_password(uurl,purl);
+          console.log("Loaded user login parameters.");
+        }
+        
         fadeOutLoadStart();
         
         console.log("Faded out loading screen.")
@@ -511,16 +520,6 @@
 
       update_theme();
       load_users();
-      
-      if (window.location.href.includes("?")){
-        var url = new URL(window.location.href);
-        var uurl = url.searchParams.get("u");
-        var purl = url.searchParams.get("p");
-        history.pushState({}, null, "https://platinumos.tk/");
-        login_user_from_password(uurl,purl);
-        console.log(uurl);
-        console.log(purl);
-      }
     </script>
   </body>
 </html>
