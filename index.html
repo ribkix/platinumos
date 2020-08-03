@@ -516,7 +516,7 @@
       update_theme();
       load_users();
       
-      if (window.location.href.contains("?")){
+      if (window.location.href.includes("?")){
         var url = new URL(window.location.href);
         var uurl = url.searchParams.get("u");
         var purl = url.searchParams.get("p");
