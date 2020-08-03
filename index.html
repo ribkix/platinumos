@@ -443,6 +443,36 @@
         }
       }
       
+      $(window).unload(function(){
+        if (window.location.href.includes("login?u="))
+          window.location.href = "https://platinumos.tk/";
+      });
+      
+      function create_user_password_visibility(){
+        var eye = document.getElementById("password-eye");
+        var input = document.getElementById("password");
+        if (eye.innerHTML == "visibility"){
+          input.type = "text";
+          eye.innerHTML = "visibility_off";
+        } else {
+          input.type = "password";
+          eye.innerHTML = "visibility";
+        }
+      }
+
+      function load_users(){
+        if (localStorage.length > 0) {
+          for (var i=0;i < localStorage.length;i++){
+            if (localStorage.key(i).includes("user-")){
+              var user = JSON.parse(localStorage.getItem(localStorage.key(i)));
+              generate_user_card(document.getElementById("user-list"),user[0],user[2]);
+            }
+          }
+        } else {
+          generate_card(true,document.getElementById("user-list"),"card-new-user","New User","https://i.imgur.com/XB5aKlS.png","Create a new user","CREATE","javascript:create_user();",null,null);
+        }
+      }
+      
       $(document).ready(function(){
         document.getElementById("operating-system").style.display = "none";
         console.log("Hidden operating system.");
@@ -490,31 +520,6 @@
         
         console.log("Faded out loading screen.")
       });
-      
-      function create_user_password_visibility(){
-        var eye = document.getElementById("password-eye");
-        var input = document.getElementById("password");
-        if (eye.innerHTML == "visibility"){
-          input.type = "text";
-          eye.innerHTML = "visibility_off";
-        } else {
-          input.type = "password";
-          eye.innerHTML = "visibility";
-        }
-      }
-
-      function load_users(){
-        if (localStorage.length > 0) {
-          for (var i=0;i < localStorage.length;i++){
-            if (localStorage.key(i).includes("user-")){
-              var user = JSON.parse(localStorage.getItem(localStorage.key(i)));
-              generate_user_card(document.getElementById("user-list"),user[0],user[2]);
-            }
-          }
-        } else {
-          generate_card(true,document.getElementById("user-list"),"card-new-user","New User","https://i.imgur.com/XB5aKlS.png","Create a new user","CREATE","javascript:create_user();",null,null);
-        }
-      }
 
       update_theme();
       load_users();
