@@ -22,8 +22,8 @@
               <div class="col">
                 <h1 id="user-login-username">Error</h1>
                 <div class="input-field">
-                  <input id="user-login-password" type="password" class="validate">
-                  <label for="user-login-password">Password</label>
+                  <input id="user-login-password" type="password" class="validate" style="border-bottom: 1px solid black !important;">
+                  <label for="user-login-password" style="color: black;">Password</label>
                 </div>
                 <a class="waves-effect waves-light btn-large accent-bg" href="javascript:login();">LOGIN</a>
               </div>
@@ -122,5 +122,10 @@
   #user-login-username {
     color: white;
     text-shadow: 2px 2px 8px black;
+  }
+  
+  #user-login-password:focus {
+    border-bottom: 1px solid black !important;
+    box-shadow: 0 1px 0 0 black !important;
   }
 </style>
