@@ -468,11 +468,6 @@
         }
       }
       
-      $(window).on('beforeunload', function() {
-        if (window.location.href.includes("login?u="))
-          window.location.href = "https://platinumos.tk/";
-      });
-      
       $(document).ready(function(){
         document.getElementById("operating-system").style.display = "none";
         console.log("Hidden operating system.");
