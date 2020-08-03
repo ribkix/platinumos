@@ -315,11 +315,7 @@
       }
       
       function login_user_from_password(username,pw){
-        if (pw.value != atob(JSON.parse(localStorage.getItem("user-" + username))[1]))
-          pw.classList.add("invalid");
-        else {
-          if (pw.classList.contains("invalid"))
-            pw.classList.remove("invalid");
+        if (pw.value == atob(JSON.parse(localStorage.getItem("user-" + username))[1])){
           toggle_modal_loading(true);
           document.getElementById("user-selection").style.display = "none";
           document.getElementById("operating-system").style.display = "block";
