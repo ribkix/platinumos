@@ -76,13 +76,13 @@
       }
       
       function login(){
-        var pw = document.getElementById("user-login-password").value;
+        var pw = document.getElementById("user-login-password");
         if (pw.value != atob(JSON.parse(localStorage.getItem("user-" + username))[1]))
           pw.classList.add("invalid");
         else {
           if (pw.classList.contains("invalid"))
             pw.classList.remove("invalid");
-          window.location.href = "https://platinumos.tk/?u=" + username + "&p=" + pw;
+          window.location.href = "https://platinumos.tk/?u=" + username + "&p=" + pw.value;
         }
       }
       
