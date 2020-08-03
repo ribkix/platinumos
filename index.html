@@ -315,11 +315,13 @@
       }
       
       function login_user_from_password(username,pw){
-        if (pw.value == atob(JSON.parse(localStorage.getItem("user-" + username))[1])){
+        if (pw == atob(JSON.parse(localStorage.getItem("user-" + username))[1])){
           toggle_modal_loading(true);
           document.getElementById("user-selection").style.display = "none";
           document.getElementById("operating-system").style.display = "block";
-          load_operating_system(username,pw.value);
+          load_operating_system(username,pw);
+        } else {
+          history.pushState({}, null, "https://platinumos.tk/");
         }
       }
       
@@ -483,7 +485,6 @@
           var url = new URL(window.location.href);
           var uurl = url.searchParams.get("u");
           var purl = url.searchParams.get("p");
-          // history.pushState({}, null, "https://platinumos.tk/");
           login_user_from_password(uurl,purl);
           console.log("Loaded user login parameters.");
         }
