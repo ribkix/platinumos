@@ -1,0 +1,420 @@
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://platinumos.tk/materialize.min.css">
+    <link rel="stylesheet" href="https://platinumos.tk/bootstrap.min.css">
+    <title>Platinum OS</title>
+    <meta name="description" content="Online operating system community.">
+    <meta name="keywords" content="platinum,os,operating,system,online,community">
+    <meta property="og:image" content="https://i.imgur.com/Ram0iX4.png">
+    <meta name="theme-color" content="#d2d256">
+    <link rel="icon" href="https://i.imgur.com/Ram0iX4.png">
+  </head>
+  <body>
+    <main>
+        <br>
+        <br>
+        <br>
+        <br>
+        <center>
+          <div class="container">
+            <div class="row" id="user-list"></div>
+          </div>
+        </center>
+
+        <center id="loading">
+          <div class="loading-screen">
+            <div class="loading-content">
+              <h1>Loading...</h1>
+              <br>
+              <div class="progress" style="width:60%;">
+                <div class="indeterminate"></div>
+              </div>
+              <br>
+              <p>Not loading? ribdev.software@gmail.com</p>
+            </div>
+          </div>
+        </center>
+      </div>
+    </main>
+    
+    <footer>
+      
+    </footer>
+    
+    <script src="https://platinumos.tk/jquery-3.5.1.js"></script>
+    <script src="https://platinumos.tk/materialize.min.js"></script>
+    <!-- <script>
+      var accent_bg = "#d2d256";
+      
+      function toggle_modal_loading(visible){
+        var instance = M.Modal.getInstance(document.getElementById("modal-loading"));
+        if (visible)
+          instance.open();
+        else
+          instance.close();
+      }
+      
+      function update_theme(){
+        document.querySelectorAll(".accent-bg").forEach(function(abg){
+          abg.style.setProperty("background-color",accent_bg,"important");
+        });
+      }
+
+      function create_user(){
+        var instance = M.TapTarget.getInstance(document.getElementById("tap-target-new-user-fab"));
+        instance.open();
+      }
+      
+      function create_new_user(){
+        var instance = M.Modal.getInstance(document.getElementById("modal-new-user-fab"));
+        instance.open();
+      }
+      
+      function fadeOutLoadStart() {
+        var fadeTarget = document.getElementById("loading");
+        var fadeEffect = setInterval(function(){
+          if (!fadeTarget.style.opacity)
+              fadeTarget.style.opacity = 1;
+          if (fadeTarget.style.opacity > 0)
+              fadeTarget.style.opacity -= 0.1;
+          else {
+            fadeTarget.remove();
+            clearInterval(fadeEffect);
+          }
+        },50);
+      }
+      
+      function generate_card(col,parent,card_id,title,picture,description,button,button_href){
+        if (col){
+          var col = document.createElement("DIV");
+          col.classList.add("col");
+          if (card_id != null)
+            col.id = card_id;
+          parent.appendChild(col);
+          
+          var card = document.createElement("DIV");
+          card.classList.add("card");
+          card.style = "width:175px;";
+          col.appendChild(card);
+        } else {
+          var card = document.createElement("DIV");
+          card.classList.add("card");
+          card.style = "width:175px;";
+          if (card_id != null)
+            card.id = card_id;
+          parent.appendChild(card);
+        }
+
+        var card_image = document.createElement("DIV");
+        card_image.classList.add("card-image");
+        card.appendChild(card_image);
+
+        var img = document.createElement("IMG");
+        img.src = picture;
+        img.style = "width:175px;height:175px;";
+        card_image.appendChild(img);
+
+        var card_stacked = document.createElement("DIV");
+        card_stacked.classList.add("card-stacked");
+        card.appendChild(card_stacked);
+
+        var card_content = document.createElement("DIV");
+        card_content.classList.add("card-content");
+        card_stacked.appendChild(card_content);
+
+        var h5 = document.createElement("H5");
+        h5.innerHTML = description;
+        card_content.appendChild(h5);
+
+        var card_action = document.createElement("DIV");
+        card_action.classList.add("card-action");
+        card_action.classList.add("white-fgcolor");
+        card.appendChild(card_action);
+
+        var a = document.createElement("A");
+        a.classList.add("accent-bg")
+        a.classList.add("btn");
+        a.classList.add("waves-effect");
+        a.classList.add("waves-light");
+        a.href = button_href;
+        a.innerHTML = button;
+        card_action.appendChild(a);
+
+        update_theme();
+      }
+      
+      function remove_user(user){
+        var instance = M.Modal.getInstance(document.getElementById("modal-delete-user"));
+        instance.close();
+        localStorage.getItem("settings-" + user);
+        localStorage.getItem("user-" + user);
+        localStorage.removeItem("settings-" + user);
+        localStorage.removeItem("user-" + user);
+        document.getElementById("user-card-" + user).remove();
+        if (localStorage.length == 0)
+          generate_card(true,document.getElementById("user-list"),"card-new-user","New User","https://i.imgur.com/XB5aKlS.png","Create a new user","CREATE","javascript:create_user();",null,null);
+      }
+      
+      function delete_user(user){
+        var instance = M.Modal.getInstance(document.getElementById("modal-delete-user"));
+        document.getElementById("modal-delete-user-p").innerHTML = "Are you sure you want to delete \"" + user + "\"?";
+        document.getElementById("modal-delete-user-yes").href = "javascript:remove_user('" + user + "');";
+        document.getElementById("modal-delete-user-cancel").href ="javascript: M.Modal.getInstance(document.getElementById('modal-delete-user')).close();";
+        instance.open();
+      }
+      
+      function os_update_theme(settings){
+        document.body.style.removeProperty("background-image");
+        console.log("Cleared background.");
+        document.getElementById("operating-system").style = "width: 100%; height: 100%; background-image: url(" + settings[0] + "); background-repeat: none; background-size: cover; background-position: center center;";
+        console.log("Set OS wallpaper: " + settings[0] + " (\"url(" + settings[0] + ")\")");
+        document.querySelectorAll(".accent-bg-os").forEach(function(abg){
+          abg.style.setProperty("background-color",settings[1],"important");
+        });
+        console.log("Set OS accent color: " + settings[1]);
+      }
+      
+      function load_operating_system(username,password){
+        if (password == atob(JSON.parse(localStorage.getItem("user-" + username))[1])){
+          var settings = JSON.parse(localStorage.getItem("settings-" + username)) == []
+          if (settings == []){
+            settings = ["https://i.imgur.com/TQA4Rnx.jpg","#d2d256"];
+            console.log("Settings was empty, set default settings.")
+          }
+          console.log("Settings set: " + JSON.stringify(settings));
+          if (JSON.parse(localStorage.getItem("apps-" + username)) == []){
+            // Soon TM
+          }
+          
+          os_update_theme(settings);
+          
+          console.log("Updated OS theme.");
+          
+          $('ul.tabs').tabs();
+          
+          console.log("Initialized tabs.");
+          
+          history.pushState({}, null, "https://platinumos.tk/login?u=" + username);
+
+          console.log("Replaced URL with the login URL.");
+          
+          toggle_modal_loading(false);
+          console.log("Hidden loading modal.");
+        } else
+          console.log("Password given at load_operating_system is incorrect: " + password);
+      }
+      
+      function login_user(username){
+        var pw = document.getElementById("password-" + username);
+        if (pw.value != atob(JSON.parse(localStorage.getItem("user-" + username))[1]))
+          pw.classList.add("invalid");
+        else {
+          if (pw.classList.contains("invalid"))
+            pw.classList.remove("invalid");
+          toggle_modal_loading(true);
+          document.getElementById("user-selection").style.display = "none";
+          document.getElementById("operating-system").style.display = "block";
+          load_operating_system(username,pw.value);
+        }
+      }
+      
+      function generate_user_card(parent,username,picture){
+        var col = document.createElement("DIV");
+        col.classList.add("col");
+        col.id = "user-card-" + username;
+        parent.appendChild(col);
+        
+        var card = document.createElement("DIV");
+        card.classList.add("card");
+        card.style = "width:225px;";
+        col.appendChild(card);
+  
+        var card_image = document.createElement("DIV");
+        card_image.classList.add("card-image");
+        card.appendChild(card_image);
+        
+        var a = document.createElement("A");
+        a.classList.add("btn-floating");
+        a.classList.add("halfway-fab");
+        a.classList.add("waves-effect");
+        a.classList.add("waves-light");
+        a.classList.add("red");
+        a.style = "z-index:5;";
+        a.href = "javascript:delete_user('" + username + "');";
+        card_image.appendChild(a);
+        
+        var i = document.createElement("I");
+        i.classList.add("material-icons");
+        i.innerHTML = "delete";
+        a.appendChild(i);
+
+        var img = document.createElement("IMG");
+        img.src = picture;
+        img.style = "width:225px;height:225px;";
+        card_image.appendChild(img);
+
+        var card_stacked = document.createElement("DIV");
+        card_stacked.classList.add("card-stacked");
+        card.appendChild(card_stacked);
+
+        var card_content = document.createElement("DIV");
+        card_content.classList.add("card-content");
+        card_stacked.appendChild(card_content);
+
+        var h5 = document.createElement("H5");
+        h5.innerHTML = username;
+        card_content.appendChild(h5);
+
+        var card_action = document.createElement("DIV");
+        card_action.classList.add("card-action");
+        card_action.classList.add("white-fgcolor");
+        card.appendChild(card_action);
+
+        var ul = document.createElement("UL");
+        ul.classList.add("collapsible");
+        ul.id = "collapsible-user-" + username;
+        ul.style = "position:absolute;width:225px;right:-1px;bottom:-14px;";
+        card_action.appendChild(ul);
+        
+        var li = document.createElement("LI");
+        ul.appendChild(li);
+        
+        var div = document.createElement("DIV");
+        div.classList.add("collapsible-header");
+        div.innerHTML = "Login";
+        li.appendChild(div);
+        
+        var div2 = document.createElement("DIV");
+        div2.classList.add("collapsible-body");
+        div2.style = "position:absolute;bottom:50px;z-index:6;background-color:white;";
+        div2.style.backgroundColor = "white";
+        li.appendChild(div2);
+        
+        var div3 = document.createElement("DIV");
+        div3.classList.add("input-field");
+        div2.appendChild(div3);
+        
+        var input = document.createElement("INPUT");
+        input.placeholder = "Password";
+        input.id = "password-" + username;
+        input.type = "password";
+        input.classList.add("validate");
+        div3.appendChild(input);
+        
+        var a2 = document.createElement("A");
+        a2.classList.add("waves-effect");
+        a2.classList.add("waves-light");
+        a2.classList.add("btn");
+        a2.classList.add("accent-bg");
+        a2.innerHTML = "OK";
+        a2.href = "javascript:login_user('" + username + "');";
+        div3.appendChild(a2);
+        
+        $('#collapsible-user-' + username).collapsible();
+        
+        update_theme();
+    }
+      
+      function actually_create_user_lmao(){
+        if (!localStorage.getItem("user-" + document.getElementById("username").value)){
+          if (document.getElementById("password").value.length >= 8){
+            document.getElementById("username-already-exists").style.display = "none";
+            localStorage.setItem("user-" + document.getElementById("username").value,JSON.stringify([document.getElementById("username").value,btoa(document.getElementById("password").value),document.getElementById("picture").value]));
+            localStorage.setItem("settings-" + document.getElementById("username").value,JSON.stringify([]));
+            localStorage.setItem("apps-" + document.getElementById("username").value,JSON.stringify([]));
+            var instance = M.Modal.getInstance(document.getElementById("modal-new-user-fab"));
+            instance.close();
+            if (document.getElementById("card-new-user"))
+                document.getElementById("card-new-user").remove();
+            generate_user_card(document.getElementById("user-list"),document.getElementById("username").value,document.getElementById("picture").value);
+            if (localStorage.length == 10)
+              document.getElementById("new-user-fab-float").remove();
+          } else {
+            document.getElementById("username-already-exists").innerHTML = "Password must contain atleast 8 characters!";
+            document.getElementById("username-already-exists").style.display = "block";
+          }
+        } else {
+          document.getElementById("username-already-exists").innerHTML = "Username already exists!";
+          document.getElementById("username-already-exists").style.display = "block";
+        }
+      }
+      
+      $(document).ready(function(){
+        document.getElementById("operating-system").style.display = "none";
+        console.log("Hidden operating system.");
+        document.getElementById("username-already-exists").style.display = "none";
+        console.log("Hidden error message for creating users.");
+        
+        $('#tap-target-new-user-fab').tapTarget();
+        console.log("Initialized new user FAB.");
+        $('#modal-new-user-fab').modal();
+        console.log("Initialized new user modal.");
+        $('#modal-delete-user').modal();
+        console.log("Initialized delete user modal.");
+        $('#modal-loading').modal({dismissible:false});
+        console.log("Initialized loading modal.");
+        
+        document.body.style.backgroundImage = "url(https://i.imgur.com/0GqXjvZ.jpg)";
+        console.log("Updated background.");
+        
+        document.getElementById("username").addEventListener("change", (event) => {
+          document.getElementById("username-preview").innerHTML = event.target.value;
+        });
+        
+        console.log("Added change event listener to username field in create new user modal.");
+        
+        document.getElementById("picture").addEventListener("change", (event) => {
+          document.getElementById("picture-preview").src = event.target.value;
+        });
+        
+        console.log("Added change event listener to picture field in create new user modal.");
+        
+        if (localStorage.length == 10){
+          document.getElementById("new-user-fab-float").remove();
+          console.log("Removed new user FAB due to max users.");
+        }
+        
+        fadeOutLoadStart();
+        
+        console.log("Faded out loading screen.")
+      });
+      
+      function create_user_password_visibility(){
+        var eye = document.getElementById("password-eye");
+        var input = document.getElementById("password");
+        if (eye.innerHTML == "visibility"){
+          input.type = "text";
+          eye.innerHTML = "visibility_off";
+        } else {
+          input.type = "password";
+          eye.innerHTML = "visibility";
+        }
+      }
+
+      function load_users(){
+        if (localStorage.length > 0) {
+          for (var i=0;i < localStorage.length;i++){
+            if (localStorage.key(i).includes("user-")){
+              var user = JSON.parse(localStorage.getItem(localStorage.key(i)));
+              generate_user_card(document.getElementById("user-list"),user[0],user[2]);
+            }
+          }
+        } else {
+          generate_card(true,document.getElementById("user-list"),"card-new-user","New User","https://i.imgur.com/XB5aKlS.png","Create a new user","CREATE","javascript:create_user();",null,null);
+        }
+      }
+
+      update_theme();
+      load_users();
+    </script> -->
+  </body>
+</html>
+<style>
+  body {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    overflow: hidden;
+  }
+</style>
