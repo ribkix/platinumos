@@ -443,11 +443,6 @@
         }
       }
       
-      $(window).unload(function(){
-        if (window.location.href.includes("login?u="))
-          window.location.href = "https://platinumos.tk/";
-      });
-      
       function create_user_password_visibility(){
         var eye = document.getElementById("password-eye");
         var input = document.getElementById("password");
@@ -472,6 +467,11 @@
           generate_card(true,document.getElementById("user-list"),"card-new-user","New User","https://i.imgur.com/XB5aKlS.png","Create a new user","CREATE","javascript:create_user();",null,null);
         }
       }
+      
+      document.body.onunload(function(){
+        if (window.location.href.includes("login?u="))
+          window.location.href = "https://platinumos.tk/";
+      });
       
       $(document).ready(function(){
         document.getElementById("operating-system").style.display = "none";
