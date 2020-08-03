@@ -288,7 +288,11 @@
           
           $('ul.tabs').tabs();
           
-          console.log("Initialized tabs");
+          console.log("Initialized tabs.");
+          
+          history.pushState({}, null, "https://platinumos.tk/login?u=" + username);
+
+          console.log("Replaced URL with the login URL.");
           
           toggle_modal_loading(false);
           console.log("Hidden loading modal.");
