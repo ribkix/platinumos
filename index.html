@@ -468,7 +468,7 @@
         }
       }
       
-      document.body.onunload(function(){
+      $(window).on('beforeunload', function() {
         if (window.location.href.includes("login?u="))
           window.location.href = "https://platinumos.tk/";
       });
