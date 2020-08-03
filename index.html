@@ -246,9 +246,8 @@
       function os_update_theme(settings){
         document.body.style.removeProperty("background-image");
         console.log("Cleared background.");
-        document.getElementById("operating-system").style = "background-image:url(" + settings[0] + ");background-repeat:none;background-size:cover;background-position:center center;";
+        document.getElementById("operating-system").style = "background-image: url(" + settings[0] + "); background-repeat: none; background-size: cover; background-position: center center;";
         console.log("Set OS wallpaper: " + settings[0] + " (\"url(" + settings[0] + ")\")");
-        console.log("background-image:url(" + settings[0] + ");background-repeat:none;background-size:cover;background-position:center center;");
         document.querySelectorAll(".accent-bg-os").forEach(function(abg){
           abg.style.setProperty("background-color",settings[1],"important");
         });
