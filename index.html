@@ -288,12 +288,20 @@
       function settings_nav_appearance(){
         document.getElementById("settings-home").style.display = "none";
         
+        document.getElementById("settings-wallpaper-img").addEventListener("change", (event) => {
+          document.getElementById("settings-wallpaper-img").src = document.getElementById("settings-wallpaper").value;
+        });
+
+        document.getElementById("settings-accent-img").addEventListener("change", (event) => {
+          document.getElementById("settings-accent-img").style.backgroundColor = document.getElementById("settings-accent").value;
+        });
+        
         document.getElementById("settings-wallpaper").value = settings_OS[0];
         document.getElementById("settings-accent").value = settings_OS[1];
         
-        document.getElementById("settings-wallpaper-img").src = document.getElementById("settings-wallpaper").value;
-        document.getElementById("settings-accent-img").style.backgroundColor = document.getElementById("settings-accent").value;
-        
+        // document.getElementById("settings-wallpaper-img").src = document.getElementById("settings-wallpaper").value;
+        // document.getElementById("settings-accent-img").style.backgroundColor = document.getElementById("settings-accent").value;
+                
         document.getElementById("settings-appearance").style.display = "block";
       }
       
@@ -546,18 +554,6 @@
         });
         
         console.log("Added change event listener to picture field in create new user modal.");
-        
-        document.getElementById("settings-wallpaper-img").addEventListener("change", (event) => {
-          document.getElementById("settings-wallpaper-img").src = document.getElementById("settings-wallpaper").value;
-        });
-
-        console.log("Added change event listener to wallpaper field in OS settings.");
-
-        document.getElementById("settings-accent-img").addEventListener("change", (event) => {
-          document.getElementById("settings-accent-img").style.backgroundColor = document.getElementById("settings-accent").value;
-        });
-        
-        console.log("Added change event listener to accent color field in OS settings.");
         
         if (localStorage.length == 10){
           document.getElementById("new-user-fab-float").remove();
