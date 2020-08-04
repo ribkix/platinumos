@@ -363,6 +363,8 @@
           if (localStorage.getItem("settings-" + username) == "[]"){
             var settings = ["https://rbsurl.tk/04yJmJ","#d2d256"];
             console.log("Settings was empty, set default settings.")
+          } else {
+            var settings = JSON.parse(localStorage.getItem("settings-" + username));
           }
           console.log("Settings set: " + JSON.stringify(settings));
           
