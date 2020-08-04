@@ -53,10 +53,12 @@
                 <input id="settings-wallpaper" type="text" class="validate" value=" ">
                 <label for="settings-wallpaper">Wallpaper (Image URL)</label>
               </div>
+              <img id="settings-wallpaper-img" width="360px" height="240px">
               <div class="input-field">
                 <input id="settings-accent" type="text" class="validate" value=" ">
                 <label for="settings-accent">Accent Color</label>
               </div>
+              <div id="settings-accent-img" style="width: 25px; height: 25px;"></div>
             </div>
           </div>
         </div>
@@ -289,6 +291,9 @@
         document.getElementById("settings-wallpaper").value = settings_OS[0];
         document.getElementById("settings-accent").value = settings_OS[1];
         
+        document.getElementById("settings-wallpaper-img").src = document.getElementById("settings-wallpaper").value;
+        document.getElementById("settings-accent-img").style.backgroundColor = document.getElementById("settings-accent").value;
+        
         document.getElementById("settings-appearance").style.display = "block";
       }
       
@@ -333,6 +338,18 @@
           settings_OS = settings;
           
           console.log("Set OS variables.");
+          
+          document.getElementById("settings-wallpaper-img").addEventListener("change", (event) => {
+            document.getElementById("settings-wallpaper-img").src = document.getElementById("settings-wallpaper").value;
+          });
+
+          console.log("Added change event listener to wallpaper field in OS settings.");
+          
+          document.getElementById("settings-accent-img").addEventListener("change", (event) => {
+            document.getElementById("settings-accent-img").style.backgroundColor = document.getElementById("settings-accent").value;
+          });
+
+          console.log("Added change event listener to accent color field in OS settings.");
           
           toggle_modal_loading(false);
           console.log("Hidden loading modal.");
