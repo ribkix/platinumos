@@ -34,7 +34,7 @@
         </div>
         <div class="modal-footer a-bypass-black">
           <a settingReset="wallpaper" id="modal-settings-reset-yes" class="waves-effect waves-green btn-flat" href="javascript:reset_setting();">Yes</a>
-          <a class="modal-close waves-effect waves-light btn accent-bg" id="modal-settings-reset-cancel">CANCEL</a>
+          <a class="modal-close waves-effect waves-light btn accent-bg-os" id="modal-settings-reset-cancel">CANCEL</a>
         </div>
       </div>
       
@@ -48,7 +48,7 @@
         <div class="tabs-items">
           <div id="home" class="z-depth-5 tabs-item"></div>
           <div id="settings" class="tabs-item" style="background-color: white;">
-            <a class="btn-floating btn-large waves-effect waves-light accent-bg-os" style="position: absolute; bottom: 60px; left: 10px; z-index: 9999;" href="javascript:save_settings();"><i class="material-icons">save</i></a>
+            <a class="btn-floating btn-large waves-effect waves-light accent-bg-os tooltipped" data-position="right" data-tooltip="Save" style="position: absolute; bottom: 60px; left: 10px; z-index: 9999;" href="javascript:save_settings();"><i class="material-icons">save</i></a>
             
             <ul id="slide-out" class="sidenav sidenav-fixed a-bypass-black" style="top: 49px;">
               <li><a class="subheader">Settings</a></li>
@@ -66,7 +66,7 @@
               <div class="input-field suffix a-bypass-black">
                 <input id="settings-wallpaper" type="text" class="validate" value=" " onchange="document.getElementById('settings-wallpaper-img').src = document.getElementById('settings-wallpaper').value;">
                 <label for="settings-wallpaper">Wallpaper (Image URL)</label>
-                <a class="material-icons" href="javascript:settings_wallpaper_reset();">refresh</a>
+                <a class="material-icons tooltipped" data-position="left" data-tooltip="Reset" href="javascript:settings_wallpaper_reset();">refresh</a>
               </div>
               <img id="settings-wallpaper-img" style="height: 240px; width: auto;">
               <br>
@@ -74,7 +74,7 @@
               <div class="input-field suffix a-bypass-black">
                 <input id="settings-accent" type="text" class="validate" value=" " onchange="document.getElementById('settings-accent-img').style.backgroundColor = document.getElementById('settings-accent').value;">
                 <label for="settings-accent">Accent Color</label>
-                <a class="material-icons" href="javascript:settings_accent_reset();">refresh</a>
+                <a class="material-icons tooltipped" data-position="left" data-tooltip="Reset" href="javascript:settings_accent_reset();">refresh</a>
               </div>
               <div id="settings-accent-img" style="width: 25px; height: 25px;"></div>
             </div>
