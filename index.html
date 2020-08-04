@@ -27,6 +27,17 @@
         <div class="modal-footer"></div>
       </div>
       
+      <div id="modal-settings-reset" class="modal">
+        <div class="modal-content">
+          <h4>Are you sure?</h4>
+          <p>Are you sure you want to reset this setting?</p>
+        </div>
+        <div class="modal-footer">
+          <a settingReset="wallpaper" id="modal-settings-reset-yes" class="waves-effect waves-green btn-flat" href="javascript:reset_setting();">Yes</a>
+          <a class="modal-close waves-effect waves-light btn accent-bg" id="modal-settings-reset-cancel">CANCEL</a>
+        </div>
+      </div>
+      
       <div id="operating-system">
         <div class="row" style="width: 100%; margin-left: 0px;">
           <ul class="tabs accent-bg-os" style="width: 100%;">
@@ -37,7 +48,7 @@
         <div class="tabs-items">
           <div id="home" class="z-depth-5 tabs-item"></div>
           <div id="settings" class="tabs-item" style="background-color: white;">            
-            <ul id="slide-out" class="sidenav sidenav-fixed" style="top: 49px;">
+            <ul id="slide-out" class="sidenav sidenav-fixed a-bypass" style="top: 49px;">
               <li><a class="subheader">Settings</a></li>
               <li><a href="javascript:settings_nav_home();">Home</a></li>
               <li><a href="javascript:settings_nav_appearance();">Appearance</a></li>
@@ -301,18 +312,30 @@
         os_update_theme(settings_OS);
       }
       
+      function reset_setting(){
+         if (document.getElementById("modal-settings-reset-yes").settingReset == "wallpaper"){
+          document.getElementById("settings-wallpaper").value = "https://rbsurl.tk/04yJmJ";
+          document.getElementById("settings-wallpaper-img").src = document.getElementById("settings-wallpaper").value;
+          settings_OS[0] = document.getElementById("settings-wallpaper").value;
+          update_os_settings();
+         } else if (document.getElementById("modal-settings-reset-yes").settingReset == "accent"){
+          document.getElementById("settings-accent").value = "#d2d256";
+          document.getElementById("settings-accent-img").style.backgroundColor = document.getElementById("settings-accent").value;
+          settings_OS[1] = document.getElementById("settings-accent").value;
+          update_os_settings();
+         }
+      }
+      
       function settings_wallpaper_reset(){
-        document.getElementById("settings-wallpaper").value = "https://rbsurl.tk/04yJmJ";
-        document.getElementById("settings-wallpaper-img").src = document.getElementById("settings-wallpaper").value;
-        settings_OS[0] = document.getElementById("settings-wallpaper").value;
-        update_os_settings();
+        document.getElementById("modal-settings-reset-yes").settingReset = "wallpaper";
+        var instance = M.Modal.getInstance(document.getElementById("modal-settings-reset"));
+        instance.open();
       }
       
       function settings_accent_reset(){
-        document.getElementById("settings-accent").value = "#d2d256";
-        document.getElementById("settings-accent-img").style.backgroundColor = document.getElementById("settings-accent").value;
-        settings_OS[1] = document.getElementById("settings-accent").value;
-        update_os_settings();
+        document.getElementById("modal-settings-reset-yes").settingReset = "accent";
+        var instance = M.Modal.getInstance(document.getElementById("modal-settings-reset"));
+        instance.open();
       }
       
       function settings_nav_home(){
@@ -366,6 +389,10 @@
           document.getElementById("settings-accent-img").style.backgroundColor = document.getElementById("settings-accent").value;
           
           console.log("Updated settings fields.");
+          
+          $('#modal-settings-reset').modal();
+          
+          console.log("Initialized settings reset modal.");
           
           toggle_modal_loading(false);
           console.log("Hidden loading modal.");
