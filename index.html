@@ -625,6 +625,12 @@
           console.log("Loaded user login parameters.");
         }
         
+        $(document).ready(function(){
+          $('.tooltipped').tooltip();
+        });
+        
+        console.log("Initialized tooltips");
+        
         fadeOutLoadStart();
         
         console.log("Faded out loading screen.")
