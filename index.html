@@ -39,8 +39,17 @@
           <div id="settings" class="tabs-item" style="background-color: white;">            
             <ul id="slide-out" class="sidenav sidenav-fixed" style="top: 49px;">
               <li><a class="subheader">Settings</a></li>
-              <li><a href="#!">Appearance</a></li>
+              <li><a href="javascript:settings_nav_home();">Home</a></li>
+              <li><a href="javascript:settings_nav_appearance();">Appearance</a></li>
             </ul>
+            
+            <div id="settings-home">
+              <h1>Home</h1>
+              <p>Select a category on the left.</p>
+            </div>
+            <div id="settings-appearance">
+              <h1>Appearance</h1>
+            </div>
           </div>
         </div>
       </div>
@@ -257,6 +266,16 @@
         document.getElementById("modal-delete-user-yes").href = "javascript:remove_user('" + user + "');";
         document.getElementById("modal-delete-user-cancel").href ="javascript: M.Modal.getInstance(document.getElementById('modal-delete-user')).close();";
         instance.open();
+      }
+      
+      function settings_nav_home(){
+        document.getElementById("settings-appearance").style.display = "none";
+        document.getElementById("settings-home").style.display = "block";
+      }
+      
+      function settings_nav_appearance(){
+        document.getElementById("settings-home").style.display = "block";
+        document.getElementById("settings-appearance").style.display = "none";
       }
       
       function os_update_theme(settings){
