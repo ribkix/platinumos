@@ -363,7 +363,7 @@
       function load_operating_system(username,password){
         if (password == atob(JSON.parse(localStorage.getItem("user-" + username))[1])){
           var settings = JSON.parse(localStorage.getItem("settings-" + username));
-          console.log("Loaded settings: " + settings);
+          console.log("Loaded settings: '" + settings + "' from localStorage 'settings-" + username + "'");
           if (settings == []){
             settings = ["https://rbsurl.tk/04yJmJ","#d2d256"];
             console.log("Settings was empty, set default settings.")
