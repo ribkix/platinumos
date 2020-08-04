@@ -53,10 +53,12 @@
           <div id="settings" class="tabs-item" style="background-color: white;">
             <a class="btn-floating btn-large waves-effect waves-light accent-bg-os tooltipped" data-position="right" data-tooltip="Save" style="position: absolute; bottom: 60px; left: 10px; z-index: 9999;" href="javascript:save_settings();"><i class="material-icons">save</i></a>
             
-            <ul id="slide-out" class="sidenav sidenav-fixed a-bypass-black" style="top: 49px;">
+            <ul id="slide-out" class="sidenav sidenav-fixed" style="top: 49px;">
               <li><a class="subheader">Settings</a></li>
-              <li><a href="javascript:settings_nav_home();">Home</a></li>
-              <li><a href="javascript:settings_nav_appearance();">Appearance</a></li>
+              <div class="a-bypass-black">
+                <li><a href="javascript:settings_nav_home();">Home</a></li>
+                <li><a href="javascript:settings_nav_appearance();">Appearance</a></li>
+              </div>
             </ul>
             
             <div id="settings-home" style="display: block; margin-left: 25px;">
