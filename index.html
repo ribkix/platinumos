@@ -50,7 +50,7 @@
             <div id="settings-appearance" style="display: none; margin-left: 25px; overflow-y: auto !important; height: 90%;">
               <h1>Appearance</h1>
               <br>
-              <div class="input-field suffix a-bypass">
+              <div class="input-field suffix a-bypass-black">
                 <input id="settings-wallpaper" type="text" class="validate" value=" " onchange="document.getElementById('settings-wallpaper-img').src = document.getElementById('settings-wallpaper').value;">
                 <label for="settings-wallpaper">Wallpaper (Image URL)</label>
                 <a class="material-icons" href="#">refresh</a>
@@ -58,7 +58,7 @@
               <img id="settings-wallpaper-img" style="height: 240px; width: auto;">
               <br>
               <br>
-              <div class="input-field suffix a-bypass">
+              <div class="input-field suffix a-bypass-black">
                 <input id="settings-accent" type="text" class="validate" value=" " onchange="document.getElementById('settings-accent-img').style.backgroundColor = document.getElementById('settings-accent').value;">
                 <label for="settings-accent">Accent Color</label>
                 <a class="material-icons" href="#">refresh</a>
@@ -93,7 +93,7 @@
                       <input id="username" type="text" class="validate" value="user">
                       <label for="username">Username (Cannot change later on!)</label>
                     </div>
-                    <div class="input-field suffix a-bypass">
+                    <div class="input-field suffix a-bypass-black">
                       <input id="password" type="password" class="validate">
                       <label for="password">Password</label>
                       <a class="material-icons" id="password-eye" href="javascript:create_user_password_visibility();">visibility</a>
@@ -665,12 +665,17 @@
     height: 100%;
   }
   
-  .a-bypass a {
+  .a-bypass a, .a-bypass-black a {
     text-decoration: none !important;
   }
   
   .a-bypass a:hover {
     color: white !important;
+    text-decoration: none !important;
+  }
+  
+  .a-bypass-black a:hover {
+    color: black !important;
     text-decoration: none !important;
   }
   
