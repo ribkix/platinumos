@@ -241,8 +241,12 @@
         instance.close();
         localStorage.getItem("settings-" + user);
         localStorage.getItem("user-" + user);
+        localStorage.getItem("apps-" + user);
+        localStorage.getItem("appbar-" + user);
         localStorage.removeItem("settings-" + user);
         localStorage.removeItem("user-" + user);
+        localStorage.removeItem("apps-" + user);
+        localStorage.removeItem("appbar-" + user);
         document.getElementById("user-card-" + user).remove();
         if (localStorage.length == 0)
           generate_card(true,document.getElementById("user-list"),"card-new-user","New User","https://i.imgur.com/XB5aKlS.png","Create a new user","CREATE","javascript:create_user();",null,null);
@@ -276,6 +280,9 @@
           }
           console.log("Settings set: " + JSON.stringify(settings));
           if (JSON.parse(localStorage.getItem("apps-" + username)) == []){
+            // Soon TM
+          }
+          if (JSON.parse(localStorage.getItem("appbar-" + username)) == []){
             // Soon TM
           }
           
@@ -426,6 +433,7 @@
             localStorage.setItem("user-" + document.getElementById("username").value,JSON.stringify([document.getElementById("username").value,btoa(document.getElementById("password").value),document.getElementById("picture").value]));
             localStorage.setItem("settings-" + document.getElementById("username").value,JSON.stringify([]));
             localStorage.setItem("apps-" + document.getElementById("username").value,JSON.stringify([]));
+            localStorage.setItem("appbar-" + document.getElementById("username").value,JSON.stringify([]));
             var instance = M.Modal.getInstance(document.getElementById("modal-new-user-fab"));
             instance.close();
             if (document.getElementById("card-new-user"))
