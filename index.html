@@ -43,12 +43,20 @@
               <li><a href="javascript:settings_nav_appearance();">Appearance</a></li>
             </ul>
             
-            <div id="settings-home" style="display: block;">
+            <div id="settings-home" style="display: block; margin-left: 25px;">
               <h1>Home</h1>
               <p>Select a category on the left.</p>
             </div>
-            <div id="settings-appearance" style="display: none;">
+            <div id="settings-appearance" style="display: none; margin-left: 25px;">
               <h1>Appearance</h1>
+              <div class="input-field">
+                <input id="settings-wallpaper" type="text" class="validate" value=" ">
+                <label for="settings-wallpaper">Wallpaper (Image URL)</label>
+              </div>
+              <div class="input-field">
+                <input id="settings-accent" type="text" class="validate" value=" ">
+                <label for="settings-accent">Accent Color</label>
+              </div>
             </div>
           </div>
         </div>
@@ -146,6 +154,8 @@
     <script src="https://platinumos.tk/materialize.min.js"></script>
     <script>
       var accent_bg = "#d2d256";
+      
+      var settings_OS = [];
       
       function toggle_modal_loading(visible){
         var instance = M.Modal.getInstance(document.getElementById("modal-loading"));
@@ -275,6 +285,10 @@
       
       function settings_nav_appearance(){
         document.getElementById("settings-home").style.display = "none";
+        
+        document.getElementById("settings-wallpaper").value = settings_OS[0];
+        document.getElementById("settings-accent").value = settings_OS[1];
+        
         document.getElementById("settings-appearance").style.display = "block";
       }
       
@@ -315,6 +329,10 @@
           history.pushState({}, null, "https://platinumos.tk/login?u=" + username);
 
           console.log("Replaced URL with the login URL.");
+          
+          settings_OS = settings;
+          
+          console.log("Set OS variables.");
           
           toggle_modal_loading(false);
           console.log("Hidden loading modal.");
