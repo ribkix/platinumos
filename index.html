@@ -32,7 +32,7 @@
           <h4>Are you sure?</h4>
           <p>Are you sure you want to reset this setting?</p>
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer a-bypass-black">
           <a settingReset="wallpaper" id="modal-settings-reset-yes" class="waves-effect waves-green btn-flat" href="javascript:reset_setting();">Yes</a>
           <a class="modal-close waves-effect waves-light btn accent-bg" id="modal-settings-reset-cancel">CANCEL</a>
         </div>
@@ -48,7 +48,7 @@
         <div class="tabs-items">
           <div id="home" class="z-depth-5 tabs-item"></div>
           <div id="settings" class="tabs-item" style="background-color: white;">            
-            <ul id="slide-out" class="sidenav sidenav-fixed a-bypass" style="top: 49px;">
+            <ul id="slide-out" class="sidenav sidenav-fixed a-bypass-black" style="top: 49px;">
               <li><a class="subheader">Settings</a></li>
               <li><a href="javascript:settings_nav_home();">Home</a></li>
               <li><a href="javascript:settings_nav_appearance();">Appearance</a></li>
@@ -324,6 +324,8 @@
           settings_OS[1] = document.getElementById("settings-accent").value;
           update_os_settings();
          }
+         var instance = M.Modal.getInstance(document.getElementById("modal-settings-reset"));
+         instance.close();
       }
       
       function settings_wallpaper_reset(){
