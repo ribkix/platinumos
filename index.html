@@ -40,7 +40,7 @@
       
       <div id="operating-system">
         <div class="row" style="width: 100%; margin-left: 0px;">
-          <ul class="tabs accent-bg-os" style="width: 100%;">
+          <ul class="tabs accent-bg-os a-bypass-black" style="width: 100%;">
             <li class="tab"><a class="active" href="#home">HOME</a></li>
             <li class="tab"><a href="#settings">SETTINGS</a></li>
           </ul>
@@ -59,6 +59,7 @@
               <p>Select a category on the left.</p>
             </div>
             <div id="settings-appearance" style="display: none; margin-left: 25px; overflow-y: auto !important; height: 90%;">
+              <a class="btn-floating btn-large waves-effect waves-light accent-bg-os" style="position: absolute; bottom: 60px; right: 10px;" href="javascript:save_settings();"><i class="material-icons">save</i></a>
               <h1>Appearance</h1>
               <br>
               <div class="input-field suffix a-bypass-black">
@@ -326,6 +327,12 @@
          }
          var instance = M.Modal.getInstance(document.getElementById("modal-settings-reset"));
          instance.close();
+      }
+      
+      function save_settings(){
+        settings_OS[0] = document.getElementById("settings-wallpaper").value;
+        settings_OS[1] = document.getElementById("settings-accent").value;
+        update_os_settings();
       }
       
       function settings_wallpaper_reset(){
