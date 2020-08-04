@@ -53,7 +53,7 @@
               <div class="input-field suffix a-bypass-black">
                 <input id="settings-wallpaper" type="text" class="validate" value=" " onchange="document.getElementById('settings-wallpaper-img').src = document.getElementById('settings-wallpaper').value;">
                 <label for="settings-wallpaper">Wallpaper (Image URL)</label>
-                <a class="material-icons" href="#">refresh</a>
+                <a class="material-icons" href="javascript:settings_wallpaper_reset();">refresh</a>
               </div>
               <img id="settings-wallpaper-img" style="height: 240px; width: auto;">
               <br>
@@ -61,7 +61,7 @@
               <div class="input-field suffix a-bypass-black">
                 <input id="settings-accent" type="text" class="validate" value=" " onchange="document.getElementById('settings-accent-img').style.backgroundColor = document.getElementById('settings-accent').value;">
                 <label for="settings-accent">Accent Color</label>
-                <a class="material-icons" href="#">refresh</a>
+                <a class="material-icons" href="javascript:settings_accent_reset();">refresh</a>
               </div>
               <div id="settings-accent-img" style="width: 25px; height: 25px;"></div>
             </div>
@@ -161,8 +161,8 @@
     <script src="https://platinumos.tk/materialize.min.js"></script>
     <script>
       var accent_bg = "#d2d256";
-      
       var settings_OS = [];
+      var username_OS = "";
       
       function toggle_modal_loading(visible){
         var instance = M.Modal.getInstance(document.getElementById("modal-loading"));
@@ -285,6 +285,24 @@
         instance.open();
       }
       
+      function update_os_settings(){
+        localStorage.setItem("settings-" + username_OS,JSON.stringify(settings_OS));
+      }
+      
+      function settings_wallpaper_reset(){
+        document.getElementById("settings-wallpaper").value = "https://rbsurl.tk/04yJmJ";
+        document.getElementById("settings-wallpaper-img").src = document.getElementById("settings-wallpaper").value;
+        settings_OS[0] = document.getElementById("settings-wallpaper").value;
+        update_os_settings();
+      }
+      
+      function settings_accent_reset(){
+        document.getElementById("settings-accent").value = "#d2d256";
+        document.getElementById("settings-accent-img").style.backgroundColor = document.getElementById("settings-accent").value;
+        settings_OS[1] = document.getElementById("settings-accent").value;
+        update_os_settings();
+      }
+      
       function settings_nav_home(){
         document.getElementById("settings-appearance").style.display = "none";
         document.getElementById("settings-home").style.display = "block";
@@ -334,6 +352,7 @@
           console.log("Replaced URL with the login URL.");
           
           settings_OS = settings;
+          username_OS = username;
           
           console.log("Set OS variables.");
           
