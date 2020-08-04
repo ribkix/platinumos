@@ -314,15 +314,17 @@
       
       function reset_setting(){
          if (document.getElementById("modal-settings-reset-yes").settingReset == "wallpaper"){
-          document.getElementById("settings-wallpaper").value = "https://rbsurl.tk/04yJmJ";
-          document.getElementById("settings-wallpaper-img").src = document.getElementById("settings-wallpaper").value;
-          settings_OS[0] = document.getElementById("settings-wallpaper").value;
-          update_os_settings();
+           document.getElementById("settings-wallpaper").value = "https://rbsurl.tk/04yJmJ";
+           document.getElementById("settings-wallpaper-img").src = document.getElementById("settings-wallpaper").value;
+           settings_OS[0] = document.getElementById("settings-wallpaper").value;
+           update_os_settings();
+           M.toast({html: 'Reset wallpaper.'})
          } else if (document.getElementById("modal-settings-reset-yes").settingReset == "accent"){
-          document.getElementById("settings-accent").value = "#d2d256";
-          document.getElementById("settings-accent-img").style.backgroundColor = document.getElementById("settings-accent").value;
-          settings_OS[1] = document.getElementById("settings-accent").value;
-          update_os_settings();
+           document.getElementById("settings-accent").value = "#d2d256";
+           document.getElementById("settings-accent-img").style.backgroundColor = document.getElementById("settings-accent").value;
+           settings_OS[1] = document.getElementById("settings-accent").value;
+           update_os_settings();
+           M.toast({html: 'Reset accent color.'})
          }
          var instance = M.Modal.getInstance(document.getElementById("modal-settings-reset"));
          instance.close();
@@ -332,6 +334,7 @@
         settings_OS[0] = document.getElementById("settings-wallpaper").value;
         settings_OS[1] = document.getElementById("settings-accent").value;
         update_os_settings();
+        M.toast({html: 'Saved settings.'})
       }
       
       function settings_wallpaper_reset(){
