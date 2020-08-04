@@ -359,15 +359,19 @@
       function load_operating_system(username,password){
         if (password == atob(JSON.parse(localStorage.getItem("user-" + username))[1])){
           localStorage.getItem("settings-" + username)
-          var settings = JSON.parse(localStorage.getItem("settings-" + username));
-          console.log("Loaded settings: '" + settings + "' from localStorage 'settings-" + username + "'");
-          if (settings == []){
-            settings = ["https://rbsurl.tk/04yJmJ","#d2d256"];
+          console.log("Loaded settings: '" + JSON.parse(localStorage.getItem("settings-" + username)) + "' from localStorage 'settings-" + username + "'");
+          if (JSON.parse(localStorage.getItem("settings-" + username)) == []){
+            JSON.parse(localStorage.getItem("settings-" + username)) = ["https://rbsurl.tk/04yJmJ","#d2d256"];
             console.log("Settings was empty, set default settings.")
           }
           console.log("Settings set: " + JSON.stringify(settings));
           
-          os_update_theme(settings);
+          settings_OS = JSON.parse(localStorage.getItem("settings-" + username));
+          username_OS = username;
+          
+          console.log("Set OS variables.");
+          
+          os_update_theme(settings_OS);
           
           console.log("Updated OS theme.");
           
@@ -378,11 +382,6 @@
           history.pushState({}, null, "https://platinumos.tk/login?u=" + username);
 
           console.log("Replaced URL with the login URL.");
-          
-          settings_OS = settings;
-          username_OS = username;
-          
-          console.log("Set OS variables.");
           
           document.getElementById("settings-wallpaper").value = settings_OS[0];
           document.getElementById("settings-accent").value = settings_OS[1];
