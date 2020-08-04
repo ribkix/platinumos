@@ -292,13 +292,6 @@
       
       function settings_nav_appearance(){
         document.getElementById("settings-home").style.display = "none";
-        
-        document.getElementById("settings-wallpaper").value = settings_OS[0];
-        document.getElementById("settings-accent").value = settings_OS[1];
-        
-        document.getElementById("settings-wallpaper-img").src = document.getElementById("settings-wallpaper").value;
-        document.getElementById("settings-accent-img").style.backgroundColor = document.getElementById("settings-accent").value;
-                
         document.getElementById("settings-appearance").style.display = "block";
       }
       
@@ -343,6 +336,14 @@
           settings_OS = settings;
           
           console.log("Set OS variables.");
+          
+          document.getElementById("settings-wallpaper").value = settings_OS[0];
+          document.getElementById("settings-accent").value = settings_OS[1];
+
+          document.getElementById("settings-wallpaper-img").src = document.getElementById("settings-wallpaper").value;
+          document.getElementById("settings-accent-img").style.backgroundColor = document.getElementById("settings-accent").value;
+          
+          console.log("Updated settings fields.");
           
           toggle_modal_loading(false);
           console.log("Hidden loading modal.");
