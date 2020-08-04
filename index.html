@@ -43,11 +43,11 @@
               <li><a href="javascript:settings_nav_appearance();">Appearance</a></li>
             </ul>
             
-            <div id="settings-home">
+            <div id="settings-home" style="display: block;">
               <h1>Home</h1>
               <p>Select a category on the left.</p>
             </div>
-            <div id="settings-appearance">
+            <div id="settings-appearance" style="display: none;">
               <h1>Appearance</h1>
             </div>
           </div>
@@ -274,8 +274,8 @@
       }
       
       function settings_nav_appearance(){
-        document.getElementById("settings-home").style.display = "block";
-        document.getElementById("settings-appearance").style.display = "none";
+        document.getElementById("settings-home").style.display = "none";
+        document.getElementById("settings-appearance").style.display = "block";
       }
       
       function os_update_theme(settings){
