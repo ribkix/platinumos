@@ -47,21 +47,20 @@
               <h1>Home</h1>
               <p>Select a category on the left.</p>
             </div>
-            <div id="settings-appearance" style="display: none; margin-left: 25px; overflow-y: auto !important;">
+            <div id="settings-appearance" style="display: none; margin-left: 25px; overflow-y: auto !important; height: 90%;">
               <h1>Appearance</h1>
               <br>
               <div class="input-field">
                 <input id="settings-wallpaper" type="text" class="validate" value=" " onchange="document.getElementById('settings-wallpaper-img').src = document.getElementById('settings-wallpaper').value;">
                 <label for="settings-wallpaper">Wallpaper (Image URL)</label>
               </div>
-              <br>
               <img id="settings-wallpaper-img" width="360px" height="240px">
+              <br>
               <br>
               <div class="input-field">
                 <input id="settings-accent" type="text" class="validate" value=" " onchange="document.getElementById('settings-accent-img').style.backgroundColor = document.getElementById('settings-accent').value;">
                 <label for="settings-accent">Accent Color</label>
               </div>
-              <br>
               <div id="settings-accent-img" style="width: 25px; height: 25px;"></div>
             </div>
           </div>
