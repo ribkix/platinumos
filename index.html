@@ -40,11 +40,11 @@
             <div class="center">
               <h1>Settings</h1>
               <div class="input-field">
-                <input id="os-settings-wallpaper" type="text" class="validate">
+                <input id="os-settings-wallpaper" type="text" class="validate" value="">
                 <label for="os-settings-wallpaper">Wallpaper (Image URL)</label>
               </div>
               <div class="input-field">
-                <input id="os-settings-accent" type="text" class="validate">
+                <input id="os-settings-accent" type="text" class="validate" value="">
                 <label for="os-settings-accent">Accent Color</label>
               </div>
             </div>
@@ -304,8 +304,8 @@
 
           console.log("Replaced URL with the login URL.");
           
-          document.getElementById("os-settings-wallpaper").placeholder = settings[0];
-          document.getElementById("os-settings-accent").placeholder = settings[1];
+          document.getElementById("os-settings-wallpaper").value = settings[0];
+          document.getElementById("os-settings-accent").value = settings[1];
           
           toggle_modal_loading(false);
           console.log("Hidden loading modal.");
