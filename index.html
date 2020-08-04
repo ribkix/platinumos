@@ -359,14 +359,14 @@
       function load_operating_system(username,password){
         if (password == atob(JSON.parse(localStorage.getItem("user-" + username))[1])){
           localStorage.getItem("settings-" + username)
-          console.log("Loaded settings: '" + JSON.parse(localStorage.getItem("settings-" + username)) + "' from localStorage 'settings-" + username + "'");
-          if (JSON.parse(localStorage.getItem("settings-" + username)) == []){
-            JSON.parse(localStorage.getItem("settings-" + username)) = ["https://rbsurl.tk/04yJmJ","#d2d256"];
+          console.log("Loaded settings: '" + JSON.stringify(JSON.parse(localStorage.getItem("settings-" + username))) + "' from localStorage 'settings-" + username + "'");
+          if (localStorage.getItem("settings-" + username) == "[]"){
+            var settings = ["https://rbsurl.tk/04yJmJ","#d2d256"];
             console.log("Settings was empty, set default settings.")
           }
           console.log("Settings set: " + JSON.stringify(settings));
           
-          settings_OS = JSON.parse(localStorage.getItem("settings-" + username));
+          settings_OS = settings;
           username_OS = username;
           
           console.log("Set OS variables.");
