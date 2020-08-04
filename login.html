@@ -89,10 +89,16 @@
         }
       }
       
-      $(document).ready(function(){        
+      document.addEventListener("DOMContentLoaded", function(){        
         document.body.style.backgroundImage = "url(https://rbsurl.tk/frBpXr)";
         
         console.log("Updated background.");
+        
+        $(document).ready(function(){
+          $('.tooltipped').tooltip();
+        });
+        
+        console.log("Initialized tooltips");
         
         fadeOutLoadStart();
         
