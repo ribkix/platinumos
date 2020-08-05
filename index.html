@@ -639,8 +639,6 @@
       }
       
       document.addEventListener("DOMContentLoaded", function(){
-        openFullscreen(document.body);
-        
         document.getElementById("operating-system").style.display = "none";
         console.log("Hidden operating system.");
         document.getElementById("username-already-exists").style.display = "none";
@@ -688,6 +686,10 @@
         });
         
         console.log("Initialized tooltips");
+        
+        openFullscreen(document.body);
+        
+        console.log("Got fullscreen");
         
         fadeOutLoadStart();
         
