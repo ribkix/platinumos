@@ -213,6 +213,18 @@
           instance.close();
       }
       
+      function openFullscreen(elem) {
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) { /* Firefox */
+          elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+          elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) { /* IE/Edge */
+          elem.msRequestFullscreen();
+        }
+      }
+      
       function update_theme(){
         document.querySelectorAll(".accent-bg").forEach(function(abg){
           abg.style.setProperty("background-color",accent_bg,"important");
@@ -627,6 +639,8 @@
       }
       
       document.addEventListener("DOMContentLoaded", function(){
+        openFullscreen(document.body);
+        
         document.getElementById("operating-system").style.display = "none";
         console.log("Hidden operating system.");
         document.getElementById("username-already-exists").style.display = "none";
