@@ -39,27 +39,23 @@
         </div>
       </div>
       
-      <div id="open-app" style="display: none; position: absolute; left: 0; right: 0; bottom: 0; top: 0px;">
+      <div id="open-app" style="display: none; position: absolute; left: 0; right: 0; bottom: 0; top: 0px; z-index: 9999999999999;">
+        <a class="btn-floating btn-large waves-effect waves-light red tooltipped" data-position="left" data-tooltip="Close" style="z-index: 99999999999999;" href="javascript:close_app();"><i class="material-icons">close</i></a>
         <iframe id="open-app-iframe" src="https://platinumos.yooco.org/forum/apps-98912-f.html" style="border:0px #ffffff none;" scrolling="yes" frameborder="1" marginheight="0px" marginwidth="0px" width="100%" height="100%" allowfullscreen=""></iframe>
       </div>
       
       <div id="modal-apps" class="modal">
         <div class="modal-content">
           <div class="row" style="width: 100%; margin-left: 0px; margin-top: 0px;">
-            <ul class="tabs accent-bg-os a-bypass-black" style="width: 100%;">
-              <li class="tab"><a class="active" href="#apps-browse">BROWSE</a></li>
-              <li class="tab"><a href="#apps-url">IMPORT URL</a></li>
-            </ul>
-            <div id="apps-browse">
-              <iframe src="https://platinumos.yooco.org/forum/apps-98912-f.html" style="border:0px #ffffff none;" scrolling="yes" frameborder="1" marginheight="0px" marginwidth="0px" style="min-height: 300px; max-height: 300px; min-width: 1317px; max-width: 1317px;" allowfullscreen=""></iframe>
-            </div>
-             <div id="apps-url">
+             <br>
+             <div class="input-field" style="width: 1317px;">
+               <input placeholder="https://example.com/" id="apps_url_field" type="text" class="validate">
+               <label for="apps_url_field">App URL</label>
+             </div>
+             <div class="a-bypass-black">
+               <a class="waves-effect waves-light btn-large accent-bg-os" href="javascript:open_app();">OPEN</a>
                <br>
-               <div class="input-field" style="width: 1317px;">
-                 <input placeholder="https://example.com/" id="apps_url_field" type="text" class="validate">
-                 <label for="apps_url_field">App URL</label>
-               </div>
-               <div class="a-bypass"><a class="waves-effect waves-light btn-large accent-bg-os" href="javascript:open_app();">OPEN</a></div>
+               <a class="waves-effect waves-light btn-small accent-bg-os" href="javascript:browse_apps();">BROWSE</a>
             </div>
           </div>
         </div>
@@ -390,9 +386,22 @@
         instance.open();
       }
       
+      function browse_apps(){
+        var instance = M.Modal.getInstance(document.getElementById('modal-apps'));
+        instance.close();
+        document.getElementById("open-app").style.display = "block";
+        document.getElementById("open-app-iframe").src = "https://platinumos.yooco.org/forum/apps-98912-f.html";
+      }
+      
       function open_app(){
+        var instance = M.Modal.getInstance(document.getElementById('modal-apps'));
+        instance.close();
         document.getElementById("open-app").style.display = "block";
         document.getElementById("open-app-iframe").src = document.getElementById("apps_url_field").value;
+      }
+      
+      function close_app(){
+        document.getElementById("open-app").style.display = "none";
       }
       
       function load_operating_system(username,password){
